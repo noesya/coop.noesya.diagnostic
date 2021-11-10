@@ -19,31 +19,53 @@ class Diag < ApplicationRecord
   end
 
   def analyze
-    get_websitecarbon
+    get_lighthouse if self.lighthouse.blank?
+    get_websitecarbon if self.websitecarbon.blank?
+  end
+
+  def number_of_requests
+    lighthouse['audits']['diagnostics']['details']['items'].first['numRequests']
+  rescue
+  end
+
+  def total_byte_weight
+    lighthouse['audits']['diagnostics']['details']['items'].first['totalByteWeight']
+  rescue
+  end
+
+  def co2
+    websitecarbon['statistics']['co2']['grid']['grams']
+  rescue
   end
 
   protected
 
+  def get_lighthouse
+    local_path = "./tmp/#{self.id}"
+    Pathname(local_path).mkpath
+    system "lhci collect --url #{self.url} --numberOfRuns 1"
+    system "lhci upload --target filesystem --outputDir #{local_path}"
+    manifest = JSON.parse File.read("#{local_path}/manifest.json")
+    report = manifest.first['jsonPath']
+    data = File.read report
+    json = JSON.parse data
+    self.update_column :lighthouse, json
+  end
+
+  def lighthouse_json
+    @lighthouse_json ||= JSON.parse lighthouse
+  end
+
   def get_websitecarbon
     # https://www.reboot2021.org/" -> https%3A%2F%2Fwww.reboot2021.org%2F
+    # https://api.websitecarbon.com/site?url=https%3A%2F%2Fwww.reboot2021.org%2F
+    # https://api.websitecarbon.com/b?url=https%3A%2F%2Fwww.reboot2021.org%2F
     encoded_url = CGI.escape self.url
-    # api = "https://api.websitecarbon.com/site?url=#{encoded_url}"
-    # uri = URI api
-    # response = Net::HTTP.get uri
-    # json = JSON.parse response
-    # self.update_column :websitecarbon, json
-
-    # https://github.com/Webperf-se/notebooks-diy/blob/217e83f9014dbeaebca711a11dd8b0a29c32c179/xx%20-%20green%20website.ipynb
-    # response = Net::HTTP.post URI('https://www.websitecarbon.com'), {'action': 'check_has_url_test', 'wgd-cc-url': encoded_url }.to_json
-    # sleep 10
-
-    # response = Net::HTTP.post URI('https://www.websitecarbon.com/wp-admin/admin-ajax.php'), { 'action': 'check_has_url_test', 'wgd-cc-url': encoded_url }.to_json
-    # byebug
-    # api = "https://api.websitecarbon.com/site?url=#{encoded_url}"
-    # uri = URI api
-    # response = Net::HTTP.get uri
-    # json = JSON.parse response
-    # self.update_column :websitecarbon, json
-
+    # https://api.websitecarbon.com/data?bytes=4248266
+    api = "https://api.websitecarbon.com/data?bytes=#{total_byte_weight}"
+    uri = URI api
+    response = Net::HTTP.get uri
+    json = JSON.parse response
+    self.update_column :websitecarbon, json
   end
 end
