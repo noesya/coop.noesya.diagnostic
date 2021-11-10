@@ -102,9 +102,9 @@ class Diag < ApplicationRecord
     command = "lighthouse #{self.url}"
     command += " --output json"
     command += " --output-path #{local_path}"
-    command += " --skip-audits=pwa"
+    # command += " --skip-audits=pwa"
     # command += " --skip-audits=full-page-screenshot"
-    # command += " --chrome-flags=\"--headless --ignore-certificate-errors\""
+    command += " --chrome-flags=\"--headless --ignore-certificate-errors --disable-dev-shm-usage --no-sandbox in-process-gpu\""
     puts command
     system command
     data = File.read local_path
