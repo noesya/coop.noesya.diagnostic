@@ -31,11 +31,37 @@ class Diag < ApplicationRecord
   def total_byte_weight
     lighthouse['audits']['diagnostics']['details']['items'].first['totalByteWeight']
   rescue
+    0
+  end
+
+  def lighthouse_performance
+    lighthouse['categories']['performance']['score']
+  rescue
+    0
+  end
+
+  def lighthouse_accessibility
+    lighthouse['categories']['accessibility']['score']
+  rescue
+    0
+  end
+
+  def lighthouse_seo
+    lighthouse['categories']['seo']['score']
+  rescue
+    0
+  end
+
+  def lighthouse_best_practices
+    lighthouse['categories']['best-practices']['score']
+  rescue
+    0
   end
 
   def co2
     websitecarbon['statistics']['co2']['grid']['grams']
   rescue
+    0
   end
 
   protected
