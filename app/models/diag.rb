@@ -32,17 +32,14 @@ class Diag < ApplicationRecord
 
   def analyze
     return unless initialized?
-    get_lighthouse if self.lighthouse.blank?
-    get_websitecarbon if self.websitecarbon.blank?
-    succeed
-  rescue
-    fail
+    start
+    analyze_in_background
   end
-  handle_asynchronously :analyze
 
   def number_of_requests
     lighthouse['audits']['diagnostics']['details']['items'].first['numRequests']
   rescue
+    0
   end
 
   def total_byte_weight
@@ -83,6 +80,15 @@ class Diag < ApplicationRecord
 
   protected
 
+  def analyze_in_background
+    get_lighthouse if self.lighthouse.blank?
+    get_websitecarbon if self.websitecarbon.blank?
+    succeed
+  rescue
+    fail
+  end
+  handle_asynchronously :analyze_in_background
+
   def get_lighthouse
     local_path = "./tmp/#{self.id}/report.json"
     Pathname(local_path).dirname.mkpath
@@ -99,16 +105,17 @@ class Diag < ApplicationRecord
   end
 
   def get_websitecarbon
-    # https://www.reboot2021.org/" -> https%3A%2F%2Fwww.reboot2021.org%2F
-    # https://api.websitecarbon.com/site?url=https%3A%2F%2Fwww.reboot2021.org%2F
-    # https://api.websitecarbon.com/b?url=https%3A%2F%2Fwww.reboot2021.org%2F
-    encoded_url = CGI.escape self.url
     # https://api.websitecarbon.com/data?bytes=4248266
     api = "https://api.websitecarbon.com/data?bytes=#{total_byte_weight}"
     uri = URI api
     response = Net::HTTP.get uri
     json = JSON.parse response
     self.update_column :websitecarbon, json
+  end
+
+  def start
+    self.status = :succeeded
+    save
   end
 
   def succeed
