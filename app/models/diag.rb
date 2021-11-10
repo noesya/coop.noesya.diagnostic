@@ -68,19 +68,12 @@ class Diag < ApplicationRecord
   protected
 
   def get_lighthouse
-    local_path = "./tmp/#{self.id}"
-    Pathname(local_path).mkpath
-    system "lhci collect --url #{self.url} --numberOfRuns 1"
-    system "lhci upload --target filesystem --outputDir #{local_path}"
-    manifest = JSON.parse File.read("#{local_path}/manifest.json")
-    report = manifest.first['jsonPath']
-    data = File.read report
+    local_path = "./tmp/#{self.id}/report.json"
+    Pathname(local_path).dirname.mkpath
+    data = system "lighthouse #{self.url} --output json --output-path #{local_path}"
+    data = File.read local_path
     json = JSON.parse data
     self.update_column :lighthouse, json
-  end
-
-  def lighthouse_json
-    @lighthouse_json ||= JSON.parse lighthouse
   end
 
   def get_websitecarbon
