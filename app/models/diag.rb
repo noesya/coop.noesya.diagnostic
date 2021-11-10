@@ -22,6 +22,7 @@ class Diag < ApplicationRecord
     get_lighthouse if self.lighthouse.blank?
     get_websitecarbon if self.websitecarbon.blank?
   end
+  handle_asynchronously :analyze
 
   def number_of_requests
     lighthouse['audits']['diagnostics']['details']['items'].first['numRequests']
