@@ -17,8 +17,6 @@ class Diag < ApplicationRecord
 
   MAX_ATTEMPTS = 3
 
-  require 'net/http'
-
   enum status: {
     initialized: 0,
     pending: 10,
@@ -26,8 +24,17 @@ class Diag < ApplicationRecord
     succeeded: 30
   }
 
+  validates_presence_of :url
+  # TODO add https://
+
   def to_s
     "#{url}"
+  end
+
+  def reset!
+    self.status = :initialized
+    save
+    analyze
   end
 
   def analyze
@@ -105,6 +112,7 @@ class Diag < ApplicationRecord
     self.update_column :lighthouse, json
   end
 
+  require 'net/http'
   def get_websitecarbon
     # https://api.websitecarbon.com/data?bytes=4248266
     api = "https://api.websitecarbon.com/data?bytes=#{total_byte_weight}"

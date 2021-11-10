@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Status</th>
+      <th>CO2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @diags.each do |diag| %>
+      <tr>
+        <td><%= link_to diag, diag %></td>
+        <td><%= diag.status %></td>
+        <td><%= diag.co2 %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

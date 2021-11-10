@@ -15,7 +15,7 @@ class DiagsController < ApplicationController
   def create
     @diag = Diag.where(url: params[:diag][:url]).first_or_create
     if @diag.save
-      redirect_to @diag, notice: "Diag was successfully created."
+      redirect_to @diag
     else
       render :index, status: :unprocessable_entity
     end
