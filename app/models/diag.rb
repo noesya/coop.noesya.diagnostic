@@ -114,7 +114,7 @@ class Diag < ApplicationRecord
   end
 
   def start
-    self.status = :succeeded
+    self.status = :pending
     save
   end
 
