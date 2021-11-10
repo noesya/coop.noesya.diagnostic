@@ -70,7 +70,11 @@ class Diag < ApplicationRecord
   def get_lighthouse
     local_path = "./tmp/#{self.id}/report.json"
     Pathname(local_path).dirname.mkpath
-    data = system "lighthouse #{self.url} --output json --output-path #{local_path}"
+    command = "lighthouse #{self.url}"
+    command += " --output json"
+    command += " --output-path #{local_path}"
+    command += " --chrome-flags=\"--headless\""
+    system command
     data = File.read local_path
     json = JSON.parse data
     self.update_column :lighthouse, json
