@@ -3,7 +3,9 @@
 # Table name: diags
 #
 #  id            :uuid             not null, primary key
+#  attempts      :integer          default(0)
 #  lighthouse    :jsonb
+#  status        :integer          default("initialized")
 #  url           :string
 #  views         :integer
 #  websitecarbon :jsonb
@@ -12,17 +14,31 @@
 #
 
 class Diag < ApplicationRecord
+
+  MAX_ATTEMPTS = 3
+
   require 'net/http'
+
+  enum status: {
+    initialized: 0,
+    pending: 10,
+    abandoned: 20,
+    succeeded: 30
+  }
 
   def to_s
     "#{url}"
   end
 
   def analyze
+    return unless initialized?
     get_lighthouse if self.lighthouse.blank?
     get_websitecarbon if self.websitecarbon.blank?
+    succeed
+  rescue
+    fail
   end
-  handle_asynchronously :analyze
+  # handle_asynchronously :analyze
 
   def number_of_requests
     lighthouse['audits']['diagnostics']['details']['items'].first['numRequests']
@@ -73,8 +89,8 @@ class Diag < ApplicationRecord
     command = "lighthouse #{self.url}"
     command += " --output json"
     command += " --output-path #{local_path}"
-    command += "  --skip-audits=full-page-screenshot"
-    # command += " --chrome-flags=\"--headless --ignore-certificate-errors\""
+    command += " --skip-audits=full-page-screenshot"
+    command += " --chrome-flags=\"--headless --ignore-certificate-errors\""
     puts command
     system command
     data = File.read local_path
@@ -93,5 +109,20 @@ class Diag < ApplicationRecord
     response = Net::HTTP.get uri
     json = JSON.parse response
     self.update_column :websitecarbon, json
+  end
+
+  def succeed
+    self.status = :succeeded
+    save
+  end
+
+  def fail
+    self.attempts += 1
+    if self.attempts >= MAX_ATTEMPTS
+      self.status = :abandoned
+    else
+      self.status = :initialized
+    end
+    save
   end
 end

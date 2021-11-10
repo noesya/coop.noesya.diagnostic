@@ -17,6 +17,7 @@ gem 'sassc-rails'
 gem 'kamifusen'
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'jbuilder'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

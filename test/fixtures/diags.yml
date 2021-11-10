@@ -3,7 +3,9 @@
 # Table name: diags
 #
 #  id            :uuid             not null, primary key
+#  attempts      :integer          default(0)
 #  lighthouse    :jsonb
+#  status        :integer          default("initialized")
 #  url           :string
 #  views         :integer
 #  websitecarbon :jsonb
