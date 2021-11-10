@@ -1,5 +1,5 @@
 <h1><%= @diag %></h1>
 
 <%= @diag.number_of_requests %> requêtes<br>
-<%= @diag.total_byte_weight %> bytes transférés<br>
+<%= number_to_human_size @diag.total_byte_weight %><br>
 <%= @diag.co2 %> co2 <br>
