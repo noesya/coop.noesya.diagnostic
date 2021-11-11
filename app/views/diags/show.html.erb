@@ -29,14 +29,16 @@
     <% elsif @diag.total_byte_weight < Diag::THRESHOLD_BAD %>
       Oui, c'est assez grave.
       La page évaluée pèse <%= number_to_human_size @diag.weight %>,
-      ce qui correspond un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
+      ce qui correspond à un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
       par rapport aux <%= number_to_human_size Diag::THRESHOLD_GOOD %> que nous considérons comme sobre.
     <% else %>
       Oui, c'est très grave.
       La page évaluée pèse <%= number_to_human_size @diag.weight %>,
-      ce qui correspond un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
+      ce qui correspond à un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
       par rapport aux <%= number_to_human_size Diag::THRESHOLD_GOOD %> que nous considérons comme sobre.
     <% end %>
+  </p>
+  <p>
     Cette page représente <%= number_to_percentage @diag.co2_budget, precision: 1 %>
     du budget carbone à moins de 2 tonnes de CO₂ par personne
     <a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/" target="_blank" rel="noreferrer">
@@ -67,25 +69,32 @@
     <% else %>
       C'est très bien&nbsp;! Attention toutefois,
     <% end %>
-    l'accessibilité ne se limite pas à un score Google Lighthouse, de nombreux éléments peuvent être problématiques pour certaines personnes sans être détectés par ce test. La seule solution fiable pour garantir l'accessibilité de votre site, et le respect du WCAG et du RGAA est de construire le site avec des professionnelles et des professionnels de l'accessibilité, à toutes les étapes&nbsp;: stratégie, design et développement. Aucune solution technique ne se substitue par magie à cela.
+    l'accessibilité ne se limite pas à un score Google Lighthouse, de nombreux éléments peuvent être problématiques pour certaines personnes sans être détectés par ce test. La seule solution fiable pour garantir l'accessibilité de votre site et le respect du WCAG et du RGAA est de construire le site avec des professionnelles et des professionnels de l'accessibilité, à toutes les étapes&nbsp;: stratégie, design et développement. Aucune solution technique ne se substitue par magie à cela.
   </p>
   <p>
     Le score de respect des bonnes pratiques de la page est de
     <%= number_to_percentage @diag.lighthouse_best_practices, precision: 0 %>.
     <% if @diag.lighthouse_best_practices < 90 %>
-      TODO
+      En dessous de 90%, il y a vraiment des efforts à faire, et cela peut avoir un impact sur la sécurité du site.
+      De plus,
+    <% if @diag.lighthouse_best_practices < 100 %>
+      C'est bien ! Encore quelques points à régler, et ce sera parfait.
+      Attention,
     <% else %>
-      TODO
+      C'est parfait !
+      Attention toutefois,
     <% end %>
+    tous les problèmes de sécurité ne sont pas détectés par Google Lighthouse. Il convient dans tous les cas de sécuriser correctement l'infrastructure avec l'équipe d'hébergement, et le site avec l'équipe de développement. Dans le contexte du RGPD, ce n'est pas un détail&nbsp;: l'impact financier, juridique et réputationnel d'un défaut de sécurité peut être grave.
   </p>
   <p>
     Le score d'optimisation du référencement naturel (SEO) de la page est de
     <%= number_to_percentage @diag.lighthouse_seo, precision: 0 %>.
     <% if @diag.lighthouse_seo < 90 %>
-      TODO
+      Un effort est indispensable.
     <% else %>
-      TODO
+      C'est bien !
     <% end %>
+    Le référencement naturel est composé de plusieurs facettes : nous mesurons ici uniquement l'aspect technique. La pertinence du contenu est essentielle, et la qualité des liens menant vers votre site a une grande importance. 
   </p>
 
   <h2>Comment puis-je agir ?</h2>
