@@ -30,7 +30,11 @@ class Diag < ApplicationRecord
   }
 
   validates_presence_of :url
-  # TODO add https://
+
+  def self.fix(url)
+    return "https://#{url}" unless url.start_with? 'http'
+    url
+  end
 
   def reset!
     self.status = :initialized
@@ -128,8 +132,6 @@ class Diag < ApplicationRecord
     command = "lighthouse #{self.url}"
     command += " --output json"
     command += " --output-path #{local_path}"
-    # command += " --skip-audits=pwa"
-    # command += " --skip-audits=full-page-screenshot"
     # https://github.com/GoogleChrome/lighthouse/issues/6512
     command += " --chrome-flags=\"--headless --ignore-certificate-errors --disable-dev-shm-usage --no-sandbox in-process-gpu\""
     puts command
@@ -152,11 +154,13 @@ class Diag < ApplicationRecord
   def start
     self.status = :pending
     save
+    SlackNotification.push "Démarrage de #{@diag}"
   end
 
   def succeed
     self.status = :succeeded
     save
+    SlackNotification.push "Succès de #{@diag}"
   end
 
   def fail
@@ -167,5 +171,6 @@ class Diag < ApplicationRecord
       self.status = :initialized
     end
     save
+    SlackNotification.push "Echec de #{@diag}"
   end
 end

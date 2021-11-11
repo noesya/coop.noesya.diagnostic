@@ -29,3 +29,6 @@
 /config/master.key
 node_modules
 .lighthouseci
+
+# Ignore application configuration
+/config/application.yml

@@ -9,6 +9,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
+gem 'slack-incoming-webhooks'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Front
@@ -29,6 +30,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'spring'
   gem 'annotate'
+  gem 'figaro'
 end
 
 group :test do

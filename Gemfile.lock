@@ -101,6 +101,8 @@ GEM
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.4)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     globalid (0.5.2)
       activesupport (>= 5.0)
     i18n (1.8.11)
@@ -208,6 +210,7 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
+    slack-incoming-webhooks (0.3.0)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -248,6 +251,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   delayed_job_active_record
   delayed_job_web
+  figaro
   jbuilder
   jquery-rails
   kamifusen
@@ -259,6 +263,7 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   simple_form
+  slack-incoming-webhooks
   spring
   tzinfo-data
   web-console (>= 4.1.0)

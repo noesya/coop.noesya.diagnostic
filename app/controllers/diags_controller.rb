@@ -6,6 +6,7 @@ class DiagsController < ApplicationController
   def show
     @diag = Diag.find params[:id]
     @diag.analyze
+    SlackNotification.push "Lecture de #{@diag} (#{request.url})"
   end
 
   def new
@@ -13,7 +14,8 @@ class DiagsController < ApplicationController
   end
 
   def create
-    @diag = Diag.where(url: params[:diag][:url]).first_or_create
+    url = Diag.fix params[:diag][:url]
+    @diag = Diag.where(url: url).first_or_create
     if @diag.save
       redirect_to @diag
     else
