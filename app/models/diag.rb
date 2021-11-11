@@ -154,13 +154,13 @@ class Diag < ApplicationRecord
   def start
     self.status = :pending
     save
-    SlackNotification.push "Démarrage de #{@diag}"
+    SlackNotification.push "Démarrage de #{self}"
   end
 
   def succeed
     self.status = :succeeded
     save
-    SlackNotification.push "Succès de #{@diag}"
+    SlackNotification.push "Succès de #{self}"
   end
 
   def fail
@@ -171,6 +171,6 @@ class Diag < ApplicationRecord
       self.status = :initialized
     end
     save
-    SlackNotification.push "Echec de #{@diag}"
+    SlackNotification.push "Echec de #{self}"
   end
 end
