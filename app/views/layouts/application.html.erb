@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Diagnostic</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title><%= yield :title %> • noesya</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <link rel="stylesheet" href="https://www.noesya.coop/assets/css/main.css">
   </head>
   <body>
-    <main class="container">
+    <%= render 'header' %>
+    <main aria-label="Content" class="page metier">
       <%= yield %>
     </main>
+    <%= render 'footer' %>
   </body>
 </html>

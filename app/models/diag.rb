@@ -14,8 +14,13 @@
 #
 
 class Diag < ApplicationRecord
+  THRESHOLD_BAD = 2048000
+  THRESHOLD_CORRECT = 1024000
+  THRESHOLD_GOOD = 512000
 
   MAX_ATTEMPTS = 3
+
+  CO2_TARGET = 2000
 
   enum status: {
     initialized: 0,
@@ -27,10 +32,6 @@ class Diag < ApplicationRecord
   validates_presence_of :url
   # TODO add https://
 
-  def to_s
-    "#{url}"
-  end
-
   def reset!
     self.status = :initialized
     save
@@ -41,6 +42,14 @@ class Diag < ApplicationRecord
     return unless initialized?
     start
     analyze_in_background
+  end
+
+  def weight
+    total_byte_weight
+  end
+
+  def overweight
+    1.0 * weight / THRESHOLD_GOOD * 100
   end
 
   def number_of_requests
@@ -56,25 +65,25 @@ class Diag < ApplicationRecord
   end
 
   def lighthouse_performance
-    lighthouse['categories']['performance']['score']
+    lighthouse['categories']['performance']['score'] * 100.0
   rescue
     0
   end
 
   def lighthouse_accessibility
-    lighthouse['categories']['accessibility']['score']
+    lighthouse['categories']['accessibility']['score'] * 100.0
   rescue
     0
   end
 
   def lighthouse_seo
-    lighthouse['categories']['seo']['score']
+    lighthouse['categories']['seo']['score'] * 100.0
   rescue
     0
   end
 
   def lighthouse_best_practices
-    lighthouse['categories']['best-practices']['score']
+    lighthouse['categories']['best-practices']['score'] * 100.0
   rescue
     0
   end
@@ -83,6 +92,23 @@ class Diag < ApplicationRecord
     websitecarbon['statistics']['co2']['grid']['grams']
   rescue
     0
+  end
+
+  def co2_per_year
+    1.0 * co2 * 12 * 10000 / 1000
+  end
+
+  def co2_budget
+    1.0 * co2_per_year / CO2_TARGET * 100
+  end
+
+  def co2_equivalent_person
+    return 0 if co2_per_year.zero?
+    1.0 * CO2_TARGET / co2_per_year
+  end
+
+  def to_s
+    "Diagnostic écologique de #{url}"
   end
 
   protected
@@ -104,6 +130,7 @@ class Diag < ApplicationRecord
     command += " --output-path #{local_path}"
     # command += " --skip-audits=pwa"
     # command += " --skip-audits=full-page-screenshot"
+    # https://github.com/GoogleChrome/lighthouse/issues/6512
     command += " --chrome-flags=\"--headless --ignore-certificate-errors --disable-dev-shm-usage --no-sandbox in-process-gpu\""
     puts command
     system command
