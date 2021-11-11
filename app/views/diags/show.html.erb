@@ -77,7 +77,7 @@
     <% if @diag.lighthouse_best_practices < 90 %>
       En dessous de 90%, il y a vraiment des efforts à faire, et cela peut avoir un impact sur la sécurité du site.
       De plus,
-    <% if @diag.lighthouse_best_practices < 100 %>
+    <% elsif @diag.lighthouse_best_practices < 100 %>
       C'est bien ! Encore quelques points à régler, et ce sera parfait.
       Attention,
     <% else %>
@@ -94,7 +94,7 @@
     <% else %>
       C'est bien !
     <% end %>
-    Le référencement naturel est composé de plusieurs facettes : nous mesurons ici uniquement l'aspect technique. La pertinence du contenu est essentielle, et la qualité des liens menant vers votre site a une grande importance. 
+    Le référencement naturel est composé de plusieurs facettes : nous mesurons ici uniquement l'aspect technique. La pertinence du contenu est essentielle, et la qualité des liens menant vers votre site a une grande importance.
   </p>
 
   <h2>Comment puis-je agir ?</h2>
