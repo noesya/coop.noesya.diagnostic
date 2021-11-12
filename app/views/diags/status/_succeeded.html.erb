@@ -45,6 +45,10 @@
       ce qui correspond à un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
       par rapport aux <%= number_to_human_size Diag::THRESHOLD_GOOD %> que nous considérons comme sobre.
     <% end %>
+    Ce poids correspond à la moitié du seuil de <%= number_to_human_size Diag::THRESHOLD_CORRECT %> pour une page correcte qu'a proposé
+    <a href="thttps://developer.akamai.com/blog/2015/06/11/page-bloat-average-web-page-size-more-2mb" target="_blank" rel="noreferrer">
+        Tammy Everts, sur le blog Akamai
+    </a>.
   </p>
   <p>
     Cette page représente <%= number_to_percentage @diag.co2_budget, precision: 1 %>
