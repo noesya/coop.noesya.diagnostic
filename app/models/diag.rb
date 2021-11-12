@@ -62,6 +62,10 @@ class Diag < ApplicationRecord
     0
   end
 
+  def websitecarbon_score
+    (websitecarbon['cleanerThan'] * 100).round
+  end
+
   def total_byte_weight
     lighthouse['audits']['diagnostics']['details']['items'].first['totalByteWeight']
   rescue
