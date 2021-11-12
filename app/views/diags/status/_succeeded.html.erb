@@ -57,15 +57,36 @@
 
   <h2>Quel est l'intérêt d'agir ?</h2>
   <p>
-    Pour vos utilisateurs : meilleure expérience
-    TODO
+    Pour vos utilisateurs : un site plus léger, c'est une meilleure expérience. Cela impacte positivement votre image de marque.
   </p>
   <p>
-    Pour votre activité : meilleure performance
-    TODO
+    Pour votre activité : un site plus rapide, c'est une meilleure performance business. Réduire le temps de chargement de 850 millisecondes <a href="https://www.nccgroup.trust/globalassets/resources/uk/case-studies/web-performance/cook-case-study.pdf" target="_blank" rel="noreferrer">a augmenté les conversions de COOK de 7%</a>. Cela a aussi <a href="https://web.dev/why-speed-matters/" target="_blank" rel="noreferrer">de nombreux autres impacts positifs</a>.
   </p>
   <p>
-    Pour le bien commun : meilleure responsabilité sociale et environnementale
+    Pour votre Responsabilité Sociale et Environnementale (RSE) : multipliez l'empreinte carbone de vos pages par le nombre de pages visitées sur votre site, et vous avez un indicateur chiffré que vous pouvez intégrer dans votre rapport de performance extra-financière.
+  </p>
+
+  <h2>Comment puis-je agir ?</h2>
+  <% if @diag.images_weight > Diag::THRESHOLD_GOOD %>
+    <p>
+      Vous pouvez optimiser les images : cette page télécharge <%= @diag.images_count %> image<%= 's' if @diag.images_count > 1%>,
+      pour un poids total de <%= number_to_human_size @diag.images_weight %>. Il y a 3 grands principes pour optimiser les images&nbsp;: <br>
+      1. redimensionner correctement (une image trop grande, c'est du poids pour rien)&nbsp;;<br>
+      2. compresser correctement (par exemple avec le format webp)&nbsp;<br>
+      3. proposer au navigateur un ensemble d'options (pour qu'il prenne automatiquement la meilleure taille et la meilleure compression, en utilisant les balises picture et source).
+    </p>
+  <% end %>
+  <p>
+    Vous pouvez optimiser la vitesse de chargement de la page et de toutes ses dépendances. Chaque élément téléchargé doit être le plus léger possible, d'autant plus que votre page en sollicite <%= @diag.number_of_requests %>&nbsp;! Le serveur a également une grande importance à ce sujet.
+  </p>
+  <p>
+    À ce propos, peut-être utilisez-vous WordPress, ou un autre système de gestion de contenu qui nécessite une base de données et un langage serveur, comme PHP. Si c'est le cas, cela ralentit votre site et crée des risques de sécurité. De nombreux sites peuvent être précompilés, c'est à dire que les fichiers HTML, CSS et JS sont préparés lors de chaque changement de contenu, et pas à chaque requête.
+  </p>
+  <p>
+    Enfin, vos scores de bonnes pratiques (<%= number_to_percentage @diag.lighthouse_best_practices, precision: 0 %>),
+    d'accessibilité (<%= number_to_percentage @diag.lighthouse_accessibility, precision: 0 %>)
+    et de SEO (<%= number_to_percentage @diag.lighthouse_seo, precision: 0 %>) peuvent être montés à 100% sur toutes les pages.
+    Cela passe par le respect des bonnes pratiques de développement Web et de SEO, des règles Opquast et des référentiels WCAG et RGAA.
   </p>
 
   <h2>C'est tout ?</h2>
@@ -115,29 +136,6 @@
       C'est bien !
     <% end %>
     Le référencement naturel est composé de plusieurs facettes : nous mesurons ici uniquement l'aspect technique. La pertinence du contenu est essentielle, et la qualité des liens menant vers votre site a une grande importance.
-  </p>
-
-  <h2>Comment puis-je agir ?</h2>
-  <% if @diag.images_weight > Diag::THRESHOLD_GOOD %>
-    <p>
-      Vous pouvez optimiser les images : cette page télécharge <%= @diag.images_count %> image<%= 's' if @diag.images_count > 1%>,
-      pour un poids total de <%= number_to_human_size @diag.images_weight %>. Il y a 3 grands principes pour optimiser les images. <br>
-      1. Redimensionner correctement (une image trop grande, c'est du poids pour rien) <br>
-      2. Compresser correctement (par exemple avec le format webp) <br>
-      3. Proposer au navigateur un ensemble d'options (pour qu'il prenne automatiquement la meilleure taille et la meilleure compression, en utilisant les balises picture et source).
-    </p>
-  <% end %>
-  <p>
-    Vous pouvez optimiser la vitesse de chargement de la page et de toutes ses dépendances. Chaque élément téléchargé doit être le plus léger possible, d'autant plus que votre page en sollicite <%= @diag.number_of_requests %>&nbsp;! Le serveur a également une grande importance à ce sujet.
-  </p>
-  <p>
-    À ce propos, peut-être utilisez-vous WordPress, ou un autre système de gestion de contenu qui nécessite une base de données et un langage serveur, comme PHP. Si c'est le cas, cela ralentit votre site et crée des risques de sécurité. De nombreux sites peuvent être précompilés, c'est à dire que les fichiers HTML, CSS et JS sont préparés lors de chaque changement de contenu, et pas à chaque requête.
-  </p>
-  <p>
-    Enfin, vos scores de bonnes pratiques (<%= number_to_percentage @diag.lighthouse_best_practices, precision: 0 %>),
-    d'accessibilité (<%= number_to_percentage @diag.lighthouse_accessibility, precision: 0 %>)
-    et de SEO (<%= number_to_percentage @diag.lighthouse_seo, precision: 0 %>) peuvent être montés à 100% sur toutes les pages.
-    Cela passe par le respect des bonnes pratiques de développement Web et de SEO, des règles Opquast et des référentiels WCAG et RGAA.
   </p>
 
   <h2>Je passe à l'action !</h2>
