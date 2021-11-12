@@ -111,11 +111,29 @@ class Diag < ApplicationRecord
     1.0 * CO2_TARGET / co2_per_year
   end
 
+  def images_weight
+    lighthouse_resources_image['transferSize']
+  rescue
+    0
+  end
+
+  def images_count
+    lighthouse_resources_image['requestCount']
+  rescue
+    0
+  end
+
   def to_s
     "Diagnostic écologique de #{url}"
   end
 
   protected
+
+  def lighthouse_resources_image
+    lighthouse['audits']['resource-summary']['details']['items'].each do |item|
+      return item if item['resourceType'] == 'image'
+    end
+  end
 
   def analyze_in_background
     get_lighthouse if self.lighthouse.blank?
