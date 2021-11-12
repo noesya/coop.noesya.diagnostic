@@ -1,13 +1,5 @@
 
 <section>
-  <h2>Cette page génère <%= @diag.co2.round 2 %> grammes de CO<sub>2</sub> à chaque visite</h2>
-    <p>
-      Cette estimation est effectuée par <a href="https://www.websitecarbon.com/" target="_blank" rel="noreferrer">Website Carbon Calculator</a>,
-      et intègre le transfert des données sur le réseau, la consommation électrique du réseau et des data centers et l'intensité carbone moyenne de l'électricité.
-      Si vous avez 10.000&nbsp;vues chaque mois (votre site est certainement au-dessus),
-      vous générez <%= @diag.co2_per_year.round %>&nbsp;kg de CO<sub>2</sub> par an.
-    </p>
-
   <h2>Vous êtes ici.</h2>
   <p>
     <span class="gauge">
@@ -19,6 +11,14 @@
       </span>
       <span class="gauge__legend gauge__legend--best">Les meilleures pages du Web</span>
     </span>
+  </p>
+
+  <h2>Cette page génère <%= @diag.co2.round 2 %> grammes de CO<sub>2</sub> à chaque visite</h2>
+  <p>
+    Cette estimation est effectuée par <a href="https://www.websitecarbon.com/" target="_blank" rel="noreferrer">Website Carbon Calculator</a>,
+    et intègre le transfert des données sur le réseau, la consommation électrique du réseau et des data centers et l'intensité carbone moyenne de l'électricité.
+    Si vous avez 10.000&nbsp;vues chaque mois (votre site est certainement au-dessus),
+    vous générez <%= @diag.co2_per_year.round %>&nbsp;kg de CO<sub>2</sub> par an.
   </p>
 
   <h2>Et donc ?</h2>
