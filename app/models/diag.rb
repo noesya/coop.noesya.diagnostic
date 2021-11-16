@@ -127,6 +127,12 @@ class Diag < ApplicationRecord
     0
   end
 
+  def screenshot
+    lighthouse['audits']['final-screenshot']['details']['data']
+  rescue
+    ''
+  end
+
   def to_s
     "Diagnostic écologique de #{url}"
   end
