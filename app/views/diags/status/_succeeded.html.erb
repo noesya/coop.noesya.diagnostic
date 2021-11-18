@@ -109,11 +109,13 @@
       <% if @diag.images_weight > Diag::THRESHOLD_GOOD %>
         <p>
           Vous pouvez optimiser les images : cette page télécharge <%= @diag.images_count %> image<%= 's' if @diag.images_count > 1%>,
-          pour un poids total de <%= number_to_human_size @diag.images_weight %>. Il y a 3 grands principes pour optimiser les images&nbsp;: <br>
-          1. redimensionner correctement (une image trop grande, c'est du poids pour rien)&nbsp;;<br>
-          2. compresser correctement (par exemple avec le format webp)&nbsp;<br>
-          3. proposer au navigateur un ensemble d'options (pour qu'il prenne automatiquement la meilleure taille et la meilleure compression, en utilisant les balises picture et source).
+          pour un poids total de <%= number_to_human_size @diag.images_weight %>. Il y a 3 grands principes pour optimiser les images&nbsp;:
         </p>
+        <ol>
+          <li>redimensionner correctement (une image trop grande, c'est du poids pour rien)</li>
+          <li>compresser correctement (par exemple avec le format webp)</li>
+          <li>proposer au navigateur un ensemble d'options (pour qu'il prenne automatiquement la meilleure taille et la meilleure compression, en utilisant les balises picture et source).</li>
+        </ol>
       <% end %>
       <p>
         Vous pouvez optimiser la vitesse de chargement de la page et de toutes ses dépendances. Chaque élément téléchargé doit être le plus léger possible, d'autant plus que votre page en sollicite <%= @diag.number_of_requests %>&nbsp;! Le serveur a également une grande importance à ce sujet.
