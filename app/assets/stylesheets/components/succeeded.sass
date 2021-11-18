@@ -8,6 +8,9 @@
                 margin-bottom: $grid-gutter * 4
             @include media-breakpoint-up(xl)
                 margin-bottom: $grid-gutter * 8
+        li
+            @include media-breakpoint-down(md)
+                margin-bottom: $grid-gutter
         li:nth-child(1)
             grid-column: 1/4
         li:nth-child(2)
@@ -26,6 +29,9 @@
             grid-column: 1/5
         > div:last-child
             grid-column: 5/12
+        > div
+            @include media-breakpoint-down(md)
+                margin-bottom: $grid-gutter
     &__why
         > div
             @include grid(12)
@@ -35,6 +41,9 @@
                 grid-column: 5/9
             > div:nth-child(3)
                 grid-column: 9/13
+            > div
+                @include media-breakpoint-down(md)
+                    margin-bottom: $grid-gutter
         h2
             font-size: px2rem(55)
         p
@@ -51,5 +60,7 @@
                     @include grid(12)
                     picture
                         grid-column: 1/5
+                    img
+                        max-width: 50vw
                     p
                         grid-column: 5/12
