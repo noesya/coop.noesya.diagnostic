@@ -10,18 +10,21 @@
     header ~ div
         background-color: $primary
         color: $white
-        padding-top: $grid-gutter * 2
         a
             color: $white
-        @include media-breakpoint-up(md)
-            padding-top: $grid-gutter * 4
-        @include media-breakpoint-up(xl)
-            padding-top: $grid-gutter * 8
+        &,
+        & + section
+            padding-top: $grid-gutter * 2
+            @include media-breakpoint-up(md)
+                padding-top: $grid-gutter * 4
+            @include media-breakpoint-up(xl)
+                padding-top: $grid-gutter * 8
         @media (prefers-color-scheme: dark)
             background-color: $white
             color: $primary
             a
                 color: $primary
+
     h3
         font-size: px2rem(45)
         margin-bottom: $grid-gutter
