@@ -1,28 +1,29 @@
-<header>
-  <h1>Admin</h1>
-</header>
-<section>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>URL</th>
-      <th>Status</th>
-      <th>Weight (raw)</th>
-      <th>Weight (human)</th>
-      <th>CO2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @diags.each do |diag| %>
-      <tr>
-        <td><%= link_to diag, diag %></td>
-        <td><%= diag.status %></td>
-        <td><%= diag.total_byte_weight %></td>
-        <td><%= number_to_human_size diag.total_byte_weight %></td>
-        <td><%= diag.co2.round 2 %> g</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</section>
+<main aria-label="Content" class="index">
+  <header>
+    <h1>Admin</h1>
+  </header>
+  <section>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th>Status</th>
+          <th>Weight (raw)</th>
+          <th>Weight (human)</th>
+          <th>CO2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @diags.each do |diag| %>
+          <tr>
+            <td><%= link_to diag, diag %></td>
+            <td><%= diag.status %></td>
+            <td><%= diag.total_byte_weight %></td>
+            <td><%= number_to_human_size diag.total_byte_weight %></td>
+            <td><%= diag.co2.round 2 %> g</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</main>
