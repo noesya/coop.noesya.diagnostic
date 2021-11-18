@@ -24,7 +24,9 @@
 <section class="succeeded__resume">
   <div>
     <h2>En résumé</h2>
-    <img src="<%= @diag.screenshot %>" alt="Capture d'écran de la page" width="280" height="498">
+    <div class="phone">
+      <img src="<%= @diag.screenshot %>" alt="Capture d'écran de la page" width="280" height="498">
+    </div>
   </div>
   <div>
     <p>Cette page génère <%= @diag.co2.round 2 %> grammes de CO<sub>2</sub> à chaque visite</p>
