@@ -1,0 +1,21 @@
+// Converted from : https://glennmccomb.com/articles/useful-sass-scss-media-query-mixins-for-bootstrap/
+
+@mixin media-breakpoint-up($breakpoint)
+    @if map-has-key($breakpoints, $breakpoint)
+        $breakpoint-value: map-get($breakpoints, $breakpoint)
+        @media (min-width: $breakpoint-value)
+            @content
+
+@mixin media-breakpoint-down($breakpoint)
+    @if map-has-key($breakpoints, $breakpoint)
+        $breakpoint-value: map-get($breakpoints, $breakpoint)
+        @media (max-width: ($breakpoint-value - 1))
+            @content
+
+@mixin media-breakpoint-height-up($height)
+    @media (min-height: ($height)) and (min-width: 1200px)
+        @content
+
+@mixin media-breakpoint-height-down($height)
+    @media (max-height: ($height)) and (min-width: 1200px)
+        @content

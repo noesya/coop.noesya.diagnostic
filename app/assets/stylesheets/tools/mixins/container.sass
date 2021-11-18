@@ -1,0 +1,9 @@
+@mixin container
+    margin-left: auto
+    margin-right: auto
+    padding-left: $grid-sm-margin * 2
+    padding-right: $grid-sm-margin * 2
+    @include media-breakpoint-up(md)
+        max-width: $grid-width
+        padding-left: $grid-gutter * 2
+        padding-right: $grid-gutter * 2

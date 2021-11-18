@@ -1,7 +1,9 @@
 <% content_for :title, @diag.to_s %>
 
-<header>
-  <h1><%= @diag %></h1>
-</header>
+<main aria-label="Content" class="show">
+  <header>
+    <h1><%= @diag %></h1>
+  </header>
 
-<%= render "diags/status/#{@diag.status}" %>
+  <%= render "diags/status/#{@diag.status}" %>
+</main>

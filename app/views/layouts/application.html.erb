@@ -5,14 +5,12 @@
     <title><%= yield :title %> • noesya</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://www.noesya.coop/assets/css/theme.css">
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <link rel="stylesheet" href="https://www.noesya.coop/assets/css/main.css">
   </head>
   <body>
     <%= render 'header' %>
-    <main aria-label="Content" class="page metier">
-      <%= yield %>
-    </main>
+    <%= yield %>
     <%= render 'footer' %>
   </body>
 </html>
