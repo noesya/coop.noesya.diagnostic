@@ -2,7 +2,7 @@
   <ul>
     <li><strong><%= @diag.co2.round 2 %></strong> grammes de CO2</li>
     <li><strong><%= number_to_percentage @diag.co2_budget, precision: 1 %></strong> du budget carbonne</li>
-    <li><strong></strong> de surpoids</li>
+    <li><strong><%= number_to_percentage @diag.overweight, precision: 0 %></strong> de surpoids</li>
   </ul>
   <div class="gauge">
     <span class="gauge__legend gauge__legend--worst">Les pires pages du Web</span>
