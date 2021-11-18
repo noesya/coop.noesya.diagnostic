@@ -13,11 +13,8 @@ gem 'slack-incoming-webhooks'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Front
-gem 'simple_form'
 gem 'sassc-rails'
 gem 'kamifusen'
-gem 'bootstrap'
-gem 'jquery-rails'
 gem 'jbuilder'
 
 group :development, :test do
