@@ -1,4 +1,15 @@
 .show
+    header,
+    .failed,
+    .pending,
+    .abandoned
+        @include grid(12)
+        h1,
+        p
+            grid-column: 1/9
+
+        @include container
+
     section
         @include grid(12)
         table
