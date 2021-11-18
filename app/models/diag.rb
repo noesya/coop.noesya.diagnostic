@@ -53,7 +53,8 @@ class Diag < ApplicationRecord
   end
 
   def overweight
-    1.0 * weight / THRESHOLD_CORRECT * 100
+    excess = (weight - THRESHOLD_CORRECT)
+    1.0 * excess / THRESHOLD_CORRECT * 100
   end
 
   def number_of_requests
