@@ -1,13 +1,22 @@
 <section class="succeeded__stats">
   <ul>
-    <li><strong><%= @diag.co2.round 2 %></strong> grammes de CO2 par visite de la page</li>
-    <li><strong><%= number_to_percentage @diag.co2_budget, precision: 1 %></strong> du budget carbonne d'une personne</li>
+    <li>
+      <strong><%= @diag.co2.round 2 %></strong>
+      grammes de CO2 <br>
+      par visite de la page
+    </li>
+    <li>
+      <strong><%= number_to_percentage @diag.co2_budget, precision: 1 %></strong>
+      du budget carbone <br>
+      d'une personne
+    </li>
     <li>
       <strong><%= number_to_percentage @diag.overweight, precision: 0 %></strong>
       <% if @diag.overweight > 0 %>
         de surpoids
       <% end %>
-      par rapport à la cible d'1 mo
+      par rapport <br>
+      à la cible d'1 mo
     </li>
   </ul>
   <div class="gauge">
