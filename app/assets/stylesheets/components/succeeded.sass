@@ -76,8 +76,15 @@
                     img
                         max-width: 50vw
                         width: 100%
+                        @include media-breakpoint-down(md)
+                            margin-bottom: $grid-gutter / 2
                     p
+                        align-self: center
                         grid-column: 5/12
+                        margin-bottom: 0
+                        br
+                            @include media-breakpoint-down(md)
+                                display: none
         > div:not(:last-child)
             border-bottom: 1px solid $border-color
             margin-bottom: 50px
