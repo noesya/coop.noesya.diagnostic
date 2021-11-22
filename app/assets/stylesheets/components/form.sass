@@ -4,17 +4,23 @@ form
     label
         display: none
     input
-        border: 0
+        border: 1px solid $border-color
+        border-right: 0
         display: block
         font-size: px2rem(22)
         line-height: px2rem(36)
         padding: 10px 20px
         width: 100%
+        @media (prefers-color-scheme: dark)
+            border-color: $border-color-reverse
     button
         appearance: none
-        border: 0
+        border: 1px solid $border-color
+        border-left: 0
         cursor: pointer
         font-size: px2rem(22)
         line-height: px2rem(36)
         padding: 10px 20px
         white-space: nowrap
+        @media (prefers-color-scheme: dark)
+            border-color: $border-color-reverse
