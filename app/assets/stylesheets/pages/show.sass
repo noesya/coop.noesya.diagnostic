@@ -1,6 +1,11 @@
 .show
-    h1
-        overflow-wrap: break-word
+    header
+        margin-bottom: 50px
+        @include media-breakpoint-up(md)
+            margin-bottom: 125px
+        h1
+            margin-bottom: $grid-gutter / 2
+            overflow-wrap: break-word
     header,
     .failed,
     .pending,
@@ -38,5 +43,14 @@
             margin-bottom: $grid-gutter
         @include media-breakpoint-up(lg)
             font-size: px2rem(45)
+    p
+        font-size: 1.25rem
+        line-height: 2rem
+        @include media-breakpoint-up(lg)
+            font-size: px2rem(25)
+            line-height: px2rem(45)
     section p:last-child
         margin-bottom: 0
+    > section:last-child
+        @include media-breakpoint-up(lg)
+            margin-left: calc(100% / 12 * 4 + #{$grid-gutter} / 2)

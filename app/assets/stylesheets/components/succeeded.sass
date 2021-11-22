@@ -14,11 +14,14 @@
         strong
             display: block
             font-size: px2rem(70)
+            font-weight: 400
             line-height: 1
             @include media-breakpoint-up(lg)
                 font-size: px2rem(99)
         .gauge
             margin-bottom: $grid-gutter
+            @include media-breakpoint-up(lg)
+                max-width: calc(100% / 12 * 11 + #{$grid-gutter} / 2)
     &__resume
         @include grid(12)
         > div:first-child
@@ -95,6 +98,3 @@
             align-self: center
             grid-column: 5/12
             margin-bottom: 0
-            br
-                @include media-breakpoint-down(md)
-                    display: none
