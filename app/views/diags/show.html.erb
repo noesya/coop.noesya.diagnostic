@@ -2,7 +2,8 @@
 
 <main aria-label="Content" class="show">
   <header>
-    <h1><%= @diag %></h1>
+    <h1>Diagnostic écologique</h1>
+    <p><%= @diag.url %></p>
   </header>
 
   <%= render "diags/status/#{@diag.status}" %>
