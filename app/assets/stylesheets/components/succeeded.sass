@@ -46,8 +46,12 @@
             @include grid(12)
             > div:nth-child(1)
                 grid-column: 1/5
+                .icon
+                    font-size: px2rem(34)
             > div:nth-child(2)
                 grid-column: 5/9
+                .icon::before
+                    transform: translateX(-10%)
             > div:nth-child(3)
                 grid-column: 9/13
             > div
@@ -57,6 +61,18 @@
             font-size: px2rem(55)
         p
             margin-bottom: 0
+        .icon
+            align-items: center
+            border-radius: 50%
+            border: 2px solid $white
+            display: flex
+            font-size: px2rem(30)
+            height: 63px
+            justify-content: center
+            margin-bottom: $grid-gutter
+            width: 63px
+            @media (prefers-color-scheme: dark)
+                border-color: $primary
     &__action
         > div
             @include grid(12)
