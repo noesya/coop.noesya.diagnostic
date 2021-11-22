@@ -83,7 +83,7 @@
         div
             @include grid(12)
             @include media-breakpoint-up(lg)
-                margin-left: 35%
+                margin-left: calc(100% / 12 * 4 + #{$grid-gutter} / 2)
         picture
             grid-column: 1/5
         img
