@@ -1,3 +1,4 @@
+<%= content_for :title, 'Admin' %>
 <main aria-label="Content" class="index">
   <header>
     <h1>Admin</h1>
@@ -17,7 +18,7 @@
       <tbody>
         <% @diags.each do |diag| %>
           <tr>
-            <td><%= link_to diag, diag %></td>
+            <td><%= link_to diag.url, diag %></td>
             <td><%= diag.views %></td>
             <td><%= diag.status %></td>
             <td><%= diag.total_byte_weight %></td>
