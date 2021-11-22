@@ -53,6 +53,7 @@
         C'est très bien !
         La page évaluée pèse <strong><%= number_to_human_size @diag.weight %></strong>.
         En dessous de <%= number_to_human_size Diag::THRESHOLD_GOOD %>, nous considérons que la page est sobre.
+        En dessous de <%= number_to_human_size Diag::THRESHOLD_CORRECT %>, c'est déjà acceptable.
         Attention, ça ne veut pas dire que votre site n'émet pas de carbone du tout, mais qu’il en émet peu.
       <% elsif @diag.total_byte_weight < Diag::THRESHOLD_CORRECT %>
         C'est plutôt bien.
@@ -61,19 +62,17 @@
         Cela étant, vous pouvez encore améliorer la sobriété du site en diminuant encore le poids de page,
         pour passer sous les <%= number_to_human_size Diag::THRESHOLD_GOOD %> que nous considérons comme sobre !
       <% elsif @diag.total_byte_weight < Diag::THRESHOLD_BAD %>
-        La situation est assez grave, la page est trop grosse.
-        La page évaluée pèse <strong><%= number_to_human_size @diag.weight %></strong>,
+        La situation est assez grave, la page est trop grosse&nbsp;: <strong><%= number_to_human_size @diag.weight %></strong>,
         ce qui correspond à un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
         par rapport aux <%= number_to_human_size Diag::THRESHOLD_CORRECT %> que nous considérons comme sobre.
       <% else %>
-        La situation est grave, la page est énorme.
-        La page évaluée pèse <strong><%= number_to_human_size @diag.weight %></strong>,
+        La situation est grave, la page est énorme&nbsp;: <strong><%= number_to_human_size @diag.weight %></strong>,
         ce qui correspond à un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
         par rapport aux <%= number_to_human_size Diag::THRESHOLD_CORRECT %> que nous considérons comme sobre.
       <% end %>
-      Ce poids de <%= number_to_human_size Diag::THRESHOLD_CORRECT %> a été proposé par
-      <a href="thttps://developer.akamai.com/blog/2015/06/11/page-bloat-average-web-page-size-more-2mb" target="_blank" rel="noreferrer">
-          Tammy Everts sur le blog Akamai
+      Le seuil de <%= number_to_human_size Diag::THRESHOLD_CORRECT %> a été proposé par
+      <a href="https://developer.akamai.com/blog/2015/06/11/page-bloat-average-web-page-size-more-2mb" target="_blank" rel="noreferrer">
+          Tammy Everts
       </a>.
     </p>
     <p>
@@ -82,7 +81,7 @@
       <a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/" target="_blank" rel="noreferrer">
         recommandé par l’ADEME dès 2020
       </a>.
-      Si vous avez <strong><%= @diag.co2_equivalent_person.ceil %></strong> pages comme celles-là sur votre site, l’empreinte carbone du site équivaut à celle d'un humain ayant un style de vie soutenable.
+      Si vous avez <strong><%= @diag.co2_equivalent_person.ceil %> pages</strong> comme celles-là sur votre site, l’empreinte carbone du site équivaut à celle d'un humain ayant un style de vie soutenable.
     </p>
   </div>
 </section>
