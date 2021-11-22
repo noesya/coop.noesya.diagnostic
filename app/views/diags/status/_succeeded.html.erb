@@ -18,6 +18,11 @@
       par rapport <br>
       à la cible d'1 mo
     </li>
+    <li>
+      <strong><%= number_to_percentage @diag.lighthouse_performance, precision: 0 %></strong>
+      de performance <br>
+      à la cible d'1 mo
+    </li>
   </ul>
   <div class="gauge">
     <span class="gauge__legend gauge__legend--worst">Les pires pages du Web</span>
