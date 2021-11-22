@@ -3,7 +3,7 @@
 <main aria-label="Content" class="show">
   <header>
     <h1>Diagnostic écologique</h1>
-    <p><%= @diag.url %></p>
+    <p><%= link_to @diag.url, @diag.url, target: :_blank, rel: :noreferrer %></p>
   </header>
 
   <%= render "diags/status/#{@diag.status}" %>
