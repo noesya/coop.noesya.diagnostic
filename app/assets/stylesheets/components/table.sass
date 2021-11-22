@@ -1,8 +1,10 @@
 .table
     grid-column: 1/13
     tr
-        border-top: 1px solid rgba(125, 125, 125, 0.2)
-        border-bottom: 1px solid rgba(125, 125, 125, 0.2)
+        border-top: 1px solid $border-color
+        border-bottom: 1px solid $border-color
+        @media (prefers-color-scheme: dark)
+            border-color: $border-color-reverse
         td, th
             text-align: left
-            padding: 10px 0
+            padding: px2rem(10) 0
