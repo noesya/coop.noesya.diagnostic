@@ -1,7 +1,7 @@
 .succeeded
     &__stats
         ul
-            @include grid(12)
+            @include grid(4)
             font-family: $font-family-sans-serif
             margin-bottom: $grid-gutter * 3
             @include media-breakpoint-up(md)
@@ -11,18 +11,6 @@
         li
             @include media-breakpoint-down(md)
                 margin-bottom: $grid-gutter
-        li:nth-child(1)
-            grid-column: 1/5
-            @include media-breakpoint-up(lg)
-                grid-column: 1/4
-        li:nth-child(2)
-            grid-column: 5/9
-            @include media-breakpoint-up(lg)
-                grid-column: 5/9
-        li:nth-child(3)
-            grid-column: 7/10
-            @include media-breakpoint-up(lg)
-                grid-column: 9/13
         strong
             display: block
             font-size: px2rem(70)
