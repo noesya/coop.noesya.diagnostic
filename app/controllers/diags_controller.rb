@@ -6,6 +6,7 @@ class DiagsController < ApplicationController
   def show
     @diag = Diag.find params[:id]
     @diag.analyze
+    @diag.mark_as_viewed
     SlackNotification.push "Lecture de #{@diag} (#{request.url})"
   end
 

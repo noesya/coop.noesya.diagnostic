@@ -42,6 +42,10 @@ class Diag < ApplicationRecord
     analyze
   end
 
+  def mark_as_viewed
+    self.update_column :views, (self.views.to_i + 1)
+  end
+
   def analyze
     return unless initialized?
     start

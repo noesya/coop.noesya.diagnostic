@@ -7,6 +7,7 @@
       <thead>
         <tr>
           <th>URL</th>
+          <th>Views</th>
           <th>Status</th>
           <th>Weight (raw)</th>
           <th>Weight (human)</th>
@@ -17,6 +18,7 @@
         <% @diags.each do |diag| %>
           <tr>
             <td><%= link_to diag, diag %></td>
+            <td><%= diag.views %></td>
             <td><%= diag.status %></td>
             <td><%= diag.total_byte_weight %></td>
             <td><%= number_to_human_size diag.total_byte_weight %></td>
