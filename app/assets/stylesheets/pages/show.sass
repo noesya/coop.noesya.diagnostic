@@ -1,4 +1,6 @@
 .show
+    h1
+        overflow-wrap: break-word
     header,
     .failed,
     .pending,
@@ -30,5 +32,9 @@
     h2
         margin-top: -.5rem
     h3
-        font-size: px2rem(45)
-        margin-bottom: $grid-gutter
+        font-size: px2rem(35)
+        margin-bottom: $grid-gutter / 2
+        @include media-breakpoint-up(md)
+            margin-bottom: $grid-gutter
+        @include media-breakpoint-up(lg)
+            font-size: px2rem(45)
