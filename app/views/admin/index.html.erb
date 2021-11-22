@@ -1,3 +1,4 @@
+<%= content_for :title, 'Admin' %>
 <main aria-label="Content" class="index">
   <header>
     <h1>Admin</h1>
@@ -6,18 +7,18 @@
     <table class="table">
       <thead>
         <tr>
-          <th>URL</th>
-          <th>Views</th>
-          <th>Status</th>
-          <th>Weight (raw)</th>
-          <th>Weight (human)</th>
-          <th>CO2</th>
+          <th scope="col">URL</th>
+          <th scope="col">Views</th>
+          <th scope="col">Status</th>
+          <th scope="col">Weight (raw)</th>
+          <th scope="col">Weight (human)</th>
+          <th scope="col">CO2</th>
         </tr>
       </thead>
       <tbody>
         <% @diags.each do |diag| %>
           <tr>
-            <td><%= link_to diag, diag %></td>
+            <th scope="row"><%= link_to diag.url, diag %></th>
             <td><%= diag.views %></td>
             <td><%= diag.status %></td>
             <td><%= diag.total_byte_weight %></td>

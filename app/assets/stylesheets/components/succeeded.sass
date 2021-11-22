@@ -61,6 +61,7 @@
             @media (prefers-color-scheme: dark)
                 border-color: $primary
     &__action
+        padding-bottom: 50px !important
         > div
             @include grid(12)
             > div:first-child
@@ -68,23 +69,6 @@
             > div:last-child
                 grid-column: 5/12
                 padding-top: .5rem
-            &:last-child
-                > div > div
-                    @include grid(12)
-                    picture
-                        grid-column: 1/5
-                    img
-                        max-width: 50vw
-                        width: 100%
-                        @include media-breakpoint-down(md)
-                            margin-bottom: $grid-gutter / 2
-                    p
-                        align-self: center
-                        grid-column: 5/12
-                        margin-bottom: 0
-                        br
-                            @include media-breakpoint-down(md)
-                                display: none
         > div:not(:last-child)
             border-bottom: 1px solid $border-color
             margin-bottom: 50px
@@ -95,3 +79,22 @@
             margin: 0 0 50px 20px
         p + ol
             margin-top: -50px
+    &__noesya
+        div
+            @include grid(12)
+            @include media-breakpoint-up(lg)
+                margin-left: calc(100% / 12 * 4 + #{$grid-gutter} / 2)
+        picture
+            grid-column: 1/5
+        img
+            max-width: 50vw
+            width: 100%
+            @include media-breakpoint-down(md)
+                margin-bottom: $grid-gutter / 2
+        p
+            align-self: center
+            grid-column: 5/12
+            margin-bottom: 0
+            br
+                @include media-breakpoint-down(md)
+                    display: none
