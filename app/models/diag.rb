@@ -69,6 +69,8 @@ class Diag < ApplicationRecord
 
   def websitecarbon_score
     (websitecarbon['cleanerThan'] * 100).round
+  rescue
+    0
   end
 
   def total_byte_weight

@@ -9,9 +9,9 @@
         <tr>
           <th scope="col">URL</th>
           <th scope="col">Views</th>
-          <th scope="col">Percent</th>
+          <th scope="col">Website Carbon</th>
           <th scope="col">Status</th>
-          <th scope="col">Weight (human)</th>
+          <th scope="col">Weight</th>
           <th scope="col">CO2</th>
         </tr>
       </thead>
@@ -22,7 +22,6 @@
             <td><%= diag.views %></td>
             <td><%= diag.websitecarbon_score %></td>
             <td><%= diag.status %></td>
-            <td><%= diag.total_byte_weight %></td>
             <td><%= number_to_human_size diag.total_byte_weight %></td>
             <td><%= diag.co2.round 2 %> g</td>
           </tr>

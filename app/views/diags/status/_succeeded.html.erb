@@ -170,7 +170,7 @@
           Le score de performance de la page est de
           <strong><%= number_to_percentage @diag.lighthouse_performance, precision: 0 %></strong>.
           <% if @diag.lighthouse_performance < 90 %>
-            En dessous de 90%, ce n'est pas bon, et cela donne l’impression que l’appareil utilisé (téléphone ou ordinateur) rame, et cela donne envie de changer l’appareil&nbsp;: on appelle cela l’obsolescence technologique stimulée. l’impact écologique est désastreux.
+            En dessous de 90%, ce n'est pas bon. Cela donne l’impression que l’appareil utilisé (téléphone ou ordinateur) rame, et cela donne à la personne envie de changer l’appareil&nbsp;: on appelle cela l’obsolescence technologique stimulée. L’impact écologique est désastreux.
           <% else %>
             C'est très bien&nbsp;! La page se charge rapidement, de façon stable visuellement, et donne une impression de fluidité technique.
           <% end %>
