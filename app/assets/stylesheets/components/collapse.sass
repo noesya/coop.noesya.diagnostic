@@ -1,0 +1,41 @@
+.collapse
+    label
+        cursor: pointer
+        display: block
+        font-size: 1.1875rem
+        line-height: 1.875rem
+        position: relative
+        &::after,
+        &::before
+            content: ''
+            position: absolute
+            right: 0
+            top: 50%
+            transform: translateY(-50%)
+        &::before
+            border: 1px solid $primary
+            border-radius: 50%
+            height: 1rem
+            width: 1rem
+            @media (prefers-color-scheme: dark)
+                border-color: $white
+        &::after
+            border-bottom: 1px solid $primary
+            border-right: 1px solid $primary
+            height: px2rem(5)
+            right: 6px
+            transform: translateY(-65%) rotate(45deg)
+            transition: transform .3s ease
+            width: px2rem(5)
+            @media (prefers-color-scheme: dark)
+                border-color: $white
+    input
+        display: none
+    > div
+        display: none
+    input:checked ~ label
+        &::after
+            transform: translateY(-35%) rotate(225deg)
+    input:checked ~ div
+        display: block
+        padding-top: $grid-gutter
