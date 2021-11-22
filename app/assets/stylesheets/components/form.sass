@@ -1,6 +1,8 @@
 form
     display: flex
     margin-bottom: $grid-gutter
+    @include media-breakpoint-down(md)
+        flex-wrap: wrap
     label
         display: none
     input
@@ -23,5 +25,7 @@ form
         line-height: px2rem(36)
         padding: 10px 20px
         white-space: nowrap
+        @include media-breakpoint-down(md)
+            width: 100%
         @media (prefers-color-scheme: dark)
             border-color: $border-color-reverse
