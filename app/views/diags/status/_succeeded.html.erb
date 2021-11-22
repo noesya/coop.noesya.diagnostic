@@ -18,6 +18,11 @@
       par rapport <br>
       à la cible d'1 mo
     </li>
+    <li>
+      <strong><%= number_to_percentage @diag.lighthouse_performance, precision: 0 %></strong>
+      de performance <br>
+      Lighthouse
+    </li>
   </ul>
   <div class="gauge">
     <span class="gauge__legend gauge__legend--worst">Les pires pages du Web</span>
@@ -59,16 +64,16 @@
         La situation est assez grave, la page est trop grosse.
         La page évaluée pèse <%= number_to_human_size @diag.weight %>,
         ce qui correspond à un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
-        par rapport aux <%= number_to_human_size Diag::THRESHOLD_GOOD %> que nous considérons comme sobre.
+        par rapport aux <%= number_to_human_size Diag::THRESHOLD_CORRECT %> que nous considérons comme sobre.
       <% else %>
         La situation est grave, la page est énorme.
         La page évaluée pèse <%= number_to_human_size @diag.weight %>,
         ce qui correspond à un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
-        par rapport aux <%= number_to_human_size Diag::THRESHOLD_GOOD %> que nous considérons comme sobre.
+        par rapport aux <%= number_to_human_size Diag::THRESHOLD_CORRECT %> que nous considérons comme sobre.
       <% end %>
-      Ce poids correspond à la moitié du seuil de <%= number_to_human_size Diag::THRESHOLD_CORRECT %> pour une page correcte qu’a proposé
+      Ce poids de <%= number_to_human_size Diag::THRESHOLD_CORRECT %> a été proposé par
       <a href="thttps://developer.akamai.com/blog/2015/06/11/page-bloat-average-web-page-size-more-2mb" target="_blank" rel="noreferrer">
-          Tammy Everts, sur le blog Akamai
+          Tammy Everts sur le blog Akamai
       </a>.
     </p>
     <p>
