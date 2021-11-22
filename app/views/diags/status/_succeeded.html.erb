@@ -41,33 +41,33 @@
     </div>
   </div>
   <div>
-    <p>Cette page génère <%= @diag.co2.round 2 %> grammes de CO<sub>2</sub> à chaque visite</p>
+    <p>Cette page génère <strong><%= @diag.co2.round 2 %></strong> grammes de CO<sub>2</sub> à chaque visite</p>
     <p>
       Cette estimation est effectuée par <a href="https://www.websitecarbon.com/" target="_blank" rel="noreferrer">Website Carbon Calculator</a>,
       et intègre le transfert des données sur le réseau, la consommation électrique du réseau et des data centers et l’intensité carbone moyenne de l’électricité.
       Si vous avez 10.000&nbsp;vues chaque mois (votre site est certainement au-dessus),
-      vous générez <%= @diag.co2_per_year.round %>&nbsp;kg de CO<sub>2</sub> par an.
+      vous générez <strong><%= @diag.co2_per_year.round %>&nbsp;kg</strong> de CO<sub>2</sub> par an.
     </p>
     <p>
       <% if @diag.total_byte_weight < Diag::THRESHOLD_GOOD %>
         C'est très bien !
-        La page évaluée pèse <%= number_to_human_size @diag.weight %>.
+        La page évaluée pèse <strong><%= number_to_human_size @diag.weight %></strong>.
         En dessous de <%= number_to_human_size Diag::THRESHOLD_GOOD %>, nous considérons que la page est sobre.
         Attention, ça ne veut pas dire que votre site n'émet pas de carbone du tout, mais qu’il en émet peu.
       <% elsif @diag.total_byte_weight < Diag::THRESHOLD_CORRECT %>
         C'est plutôt bien.
-        La page évaluée pèse <%= number_to_human_size @diag.weight %>.
+        La page évaluée pèse <strong><%= number_to_human_size @diag.weight %></strong>.
         En dessous de <%= number_to_human_size Diag::THRESHOLD_CORRECT %>, nous considérons que la page est acceptable.
         Cela étant, vous pouvez encore améliorer la sobriété du site en diminuant encore le poids de page,
         pour passer sous les <%= number_to_human_size Diag::THRESHOLD_GOOD %> que nous considérons comme sobre !
       <% elsif @diag.total_byte_weight < Diag::THRESHOLD_BAD %>
         La situation est assez grave, la page est trop grosse.
-        La page évaluée pèse <%= number_to_human_size @diag.weight %>,
+        La page évaluée pèse <strong><%= number_to_human_size @diag.weight %></strong>,
         ce qui correspond à un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
         par rapport aux <%= number_to_human_size Diag::THRESHOLD_CORRECT %> que nous considérons comme sobre.
       <% else %>
         La situation est grave, la page est énorme.
-        La page évaluée pèse <%= number_to_human_size @diag.weight %>,
+        La page évaluée pèse <strong><%= number_to_human_size @diag.weight %></strong>,
         ce qui correspond à un surpoids de <%= number_to_percentage @diag.overweight, precision: 0 %>
         par rapport aux <%= number_to_human_size Diag::THRESHOLD_CORRECT %> que nous considérons comme sobre.
       <% end %>
@@ -77,12 +77,12 @@
       </a>.
     </p>
     <p>
-      Cette page représente <%= number_to_percentage @diag.co2_budget, precision: 1 %>
+      Cette page représente <strong><%= number_to_percentage @diag.co2_budget, precision: 1 %></strong>
       du budget carbone à moins de 2 tonnes de CO₂ par personne
       <a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/" target="_blank" rel="noreferrer">
         recommandé par l’ADEME dès 2020
       </a>.
-      Si vous avez <%= @diag.co2_equivalent_person.ceil %> pages comme celles-là sur votre site, l’empreinte carbone du site équivaut à celle d'un humain ayant un style de vie soutenable.
+      Si vous avez <strong><%= @diag.co2_equivalent_person.ceil %></strong> pages comme celles-là sur votre site, l’empreinte carbone du site équivaut à celle d'un humain ayant un style de vie soutenable.
     </p>
   </div>
 </section>
@@ -129,8 +129,8 @@
         <div>
           <% if @diag.images_weight > Diag::THRESHOLD_GOOD %>
             <p>
-              Vous pouvez optimiser les images : cette page télécharge <%= @diag.images_count %> image<%= 's' if @diag.images_count > 1%>,
-              pour un poids total de <%= number_to_human_size @diag.images_weight %>. Il y a 3 grands principes pour optimiser les images&nbsp;:
+              Vous pouvez optimiser les images : cette page télécharge <strong><%= @diag.images_count %> image<%= 's' if @diag.images_count > 1%></strong>,
+              pour un poids total de <strong><%= number_to_human_size @diag.images_weight %></strong>. Il y a 3 grands principes pour optimiser les images&nbsp;:
             </p>
             <ol>
               <li>redimensionner correctement (une image trop grande, c'est du poids pour rien)</li>
@@ -139,15 +139,15 @@
             </ol>
           <% end %>
           <p>
-            Vous pouvez optimiser la vitesse de chargement de la page et de toutes ses dépendances. Chaque élément téléchargé doit être le plus léger possible, d'autant plus que votre page en sollicite <%= @diag.number_of_requests %>&nbsp;! Le serveur a également une grande importance à ce sujet.
+            Vous pouvez optimiser la vitesse de chargement de la page et de toutes ses dépendances. Chaque élément téléchargé doit être le plus léger possible, d'autant plus que votre page en sollicite <strong><%= @diag.number_of_requests %></strong>&nbsp;! Le serveur a également une grande importance à ce sujet.
           </p>
           <p>
             À ce propos, peut-être utilisez-vous WordPress, ou un autre système de gestion de contenu qui nécessite une base de données et un langage serveur, comme PHP. Si c'est le cas, cela ralentit votre site et crée des risques de sécurité. De nombreux sites peuvent être précompilés, c'est à dire que les fichiers HTML, CSS et JS sont préparés lors de chaque changement de contenu, et pas à chaque requête.
           </p>
           <p>
-            Enfin, vos scores de bonnes pratiques (<%= number_to_percentage @diag.lighthouse_best_practices, precision: 0 %>),
-            d'accessibilité (<%= number_to_percentage @diag.lighthouse_accessibility, precision: 0 %>)
-            et de SEO (<%= number_to_percentage @diag.lighthouse_seo, precision: 0 %>) peuvent être montés à 100% sur toutes les pages.
+            Enfin, vos scores de bonnes pratiques (<strong><%= number_to_percentage @diag.lighthouse_best_practices, precision: 0 %></strong>),
+            d'accessibilité (<strong><%= number_to_percentage @diag.lighthouse_accessibility, precision: 0 %></strong>)
+            et de SEO (<strong><%= number_to_percentage @diag.lighthouse_seo, precision: 0 %></strong>) peuvent être montés à 100% sur toutes les pages.
             Cela passe par le respect des bonnes pratiques de développement Web et de SEO, des règles Opquast et des référentiels WCAG et RGAA.
           </p>
         </div>
@@ -168,7 +168,7 @@
         </p>
         <p>
           Le score de performance de la page est de
-          <%= number_to_percentage @diag.lighthouse_performance, precision: 0 %>.
+          <strong><%= number_to_percentage @diag.lighthouse_performance, precision: 0 %></strong>.
           <% if @diag.lighthouse_performance < 90 %>
             En dessous de 90%, ce n'est pas bon, et cela donne l’impression que l’appareil utilisé (téléphone ou ordinateur) rame, et cela donne envie de changer l’appareil&nbsp;: on appelle cela l’obsolescence technologique stimulée. l’impact écologique est désastreux.
           <% else %>
@@ -177,7 +177,7 @@
         </p>
         <p>
           Le score d'accessibilité de la page est de
-          <%= number_to_percentage @diag.lighthouse_accessibility, precision: 0 %>.
+          <strong><%= number_to_percentage @diag.lighthouse_accessibility, precision: 0 %></strong>.
           <% if @diag.lighthouse_accessibility < 90 %>
             En dessous de 90%, ce n'est pas bon, cela signifie que certains utilisateurs et certaines utilisatrices ne pourront pas utiliser correctement votre site. De plus,
           <% else %>
@@ -187,7 +187,7 @@
         </p>
         <p>
           Le score de respect des bonnes pratiques de la page est de
-          <%= number_to_percentage @diag.lighthouse_best_practices, precision: 0 %>.
+          <strong><%= number_to_percentage @diag.lighthouse_best_practices, precision: 0 %></strong>.
           <% if @diag.lighthouse_best_practices < 90 %>
             En dessous de 90%, il y a vraiment des efforts à faire, et cela peut avoir un impact sur la sécurité du site.
             De plus,
@@ -202,7 +202,7 @@
         </p>
         <p>
           Le score d'optimisation du référencement naturel (SEO) de la page est de
-          <%= number_to_percentage @diag.lighthouse_seo, precision: 0 %>.
+          <strong><%= number_to_percentage @diag.lighthouse_seo, precision: 0 %></strong>.
           <% if @diag.lighthouse_seo < 90 %>
             Un effort est indispensable.
           <% else %>
@@ -224,7 +224,7 @@
       </p>
       <p>
         Si vous préférez, nous serons heureux de vous accompagner. Vous pouvez découvrir notre coopérative de développeurs <a href="https://www.noesya.coop/" target="_blank" rel="noreferrer">sur notre site www.noesya.coop</a>.
-        <!--Nous nous concentrons sur le développement de votre site, et nous partageons <a href="https://reseau.noesya.coop/" target="_blank" rel="noreferrer">un réseau de personnes et d'organisation de grande qualité</a>. Détail qui a son importance, nous sommes des artisans, pas des commerçants&nbsp;: nous ne margeons pas sur les prestations tierces que nous refacturons. Si vous nous demandez de gérer le design, l’accessibilité et le développement de votre site, et que vous souhaitez que nous facturions l’ensemble, nous refacturerons les prestations de design et d'accessibilité à prix coûtant. Nous partageons <a href="https://gouvernance.noesya.coop/" target="_blank" rel="noreferrer">tous nos choix de gouvernance sur ce site</a>.-->
+        <%# Nous nous concentrons sur le développement de votre site, et nous partageons <a href="https://reseau.noesya.coop/" target="_blank" rel="noreferrer">un réseau de personnes et d'organisation de grande qualité</a>. Détail qui a son importance, nous sommes des artisans, pas des commerçants&nbsp;: nous ne margeons pas sur les prestations tierces que nous refacturons. Si vous nous demandez de gérer le design, l’accessibilité et le développement de votre site, et que vous souhaitez que nous facturions l’ensemble, nous refacturerons les prestations de design et d'accessibilité à prix coûtant. Nous partageons <a href="https://gouvernance.noesya.coop/" target="_blank" rel="noreferrer">tous nos choix de gouvernance sur ce site</a>.%>
       </p>
     </div>
   </div>
