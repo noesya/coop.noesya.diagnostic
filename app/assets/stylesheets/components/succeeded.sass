@@ -2,7 +2,6 @@
     &__stats
         ul
             @include grid(4)
-            font-family: $font-family-sans-serif
             margin-bottom: $grid-gutter * 3
             @include media-breakpoint-up(md)
                 margin-bottom: $grid-gutter * 4
@@ -13,6 +12,7 @@
                 margin-bottom: $grid-gutter
         strong
             display: block
+            font-family: $font-family-sans-serif
             font-size: px2rem(70)
             font-weight: 400
             line-height: 1
@@ -28,6 +28,7 @@
             grid-column: 1/5
         > div:last-child
             grid-column: 5/12
+            padding-top: 0.15rem
         > div
             @include media-breakpoint-down(md)
                 margin-bottom: $grid-gutter
@@ -71,7 +72,7 @@
                 grid-column: 1/5
             > div:last-child
                 grid-column: 5/12
-                padding-top: .5rem
+                padding-top: 0.15rem
         > div:not(:last-child)
             border-bottom: 1px solid $border-color
             margin-bottom: 50px
