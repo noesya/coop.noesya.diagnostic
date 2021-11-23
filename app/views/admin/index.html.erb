@@ -18,7 +18,7 @@
       <tbody>
         <% @diags.each do |diag| %>
           <tr>
-            <th scope="row"><%= link_to diag.url, diag %></th>
+            <th scope="row"><%= link_to diag.url, diag_path(diag, quiet: true) %></th>
             <td><%= diag.views %></td>
             <td><%= diag.websitecarbon_score %></td>
             <td><%= diag.status %></td>
