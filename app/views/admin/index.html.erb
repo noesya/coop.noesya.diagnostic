@@ -1,7 +1,10 @@
 <%= content_for :title, 'Admin' %>
 <main aria-label="Content" class="index">
   <header>
-    <h1>Admin</h1>
+    <h1>
+      Admin <br>
+      <%= @diags.count %> diags, <%= @diags.sum(:views) %> vues
+    </h1>
   </header>
   <section>
     <table class="table">
