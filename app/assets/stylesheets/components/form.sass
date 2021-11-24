@@ -6,25 +6,29 @@ form
     label
         display: none
     input
+        appearance: none
         border: 1px solid $border-color
-        border-right: 0
+        border-radius: 0
         display: block
         font-size: px2rem(22)
         line-height: px2rem(36)
         padding: 10px 20px
         width: 100%
+        @include media-breakpoint-up(md)
+            border-right: 0
         @media (prefers-color-scheme: dark)
             border-color: $border-color-reverse
     button
         appearance: none
         background-color: $bg-secondary-color
         border: 1px solid $border-color
-        border-left: 0
         cursor: pointer
         font-size: px2rem(22)
         line-height: px2rem(36)
         padding: 10px 20px
         white-space: nowrap
+        @include media-breakpoint-up(md)
+            border-left: 0
         @include media-breakpoint-down(md)
             width: 100%
         @media (prefers-color-scheme: dark)
