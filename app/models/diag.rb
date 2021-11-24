@@ -29,6 +29,8 @@ class Diag < ApplicationRecord
     succeeded: 30
   }
 
+  before_validation :remove_final_slash
+
   validates_presence_of :url
 
   def self.fix(url)
@@ -145,6 +147,10 @@ class Diag < ApplicationRecord
   end
 
   protected
+
+  def remove_final_slash
+    self.url = url[0..-2] if url.ends_with? '/'
+  end
 
   def lighthouse_resources_image
     lighthouse['audits']['resource-summary']['details']['items'].each do |item|
