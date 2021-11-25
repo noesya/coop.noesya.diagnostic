@@ -8,7 +8,7 @@ class DiagsController < ApplicationController
     @diag.analyze
     unless params.has_key? :quiet
       @diag.mark_as_viewed
-      SlackNotification.push "Lecture de #{@diag} (#{request.url})"
+      SlackNotification.push "Lecture de #{@diag} (#{request.url}?quiet=true)"
     end
   end
 
