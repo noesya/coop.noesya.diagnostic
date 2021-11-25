@@ -3,13 +3,13 @@
 <main aria-label="Content" class="index">
   <header>
     <h1>
-      Admin <br>
       <%= @diags.total_count %> diags
     </h1>
   </header>
   <section>
     <%= area_chart Diag.group_by_day(:created_at, last: 30).count %>
-
+  </section>
+  <section>
     <table class="table">
       <thead>
         <tr>
