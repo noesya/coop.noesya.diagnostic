@@ -1,3 +1,4 @@
+<% description = 'Effectuez un diagnostique de la qualité écologique de votre site web. Situez-vous par rapport au reste du web.' %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,14 +13,14 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
     <title><%= yield :title %> • noesya</title>
-    <meta name="description" content="La coopérative noesya partage sur ce site ses choix, outils et méthodes de gouvernance, sur le plan stratégique, juridique, économique, écologique &amp; éthique.">
+    <meta name="description" content="<%= description %>">
     <meta property="og:title" content="<%= yield :title %> • noesya"/>
-    <meta property="og:description" content="La coopérative noesya partage sur ce site ses choix, outils et méthodes de gouvernance, sur le plan stratégique, juridique, économique, écologique &amp; éthique.">
+    <meta property="og:description" content="<%= description %>">
     <meta property="og:image" content="https://www.noesya.coop/assets/images/share/share.jpg">
     <meta property="og:url" content="https://diagnostic.noesya.coop/">
     <meta property="og:type" content="website">
     <meta name="twitter:title" content="<%= yield :title %> • noesya">
-    <meta name="twitter:description" content="La coopérative noesya partage sur ce site ses choix, outils et méthodes de gouvernance, sur le plan stratégique, juridique, économique, écologique &amp; éthique.">
+    <meta name="twitter:description" content="<%= description %>">
     <meta name="twitter:image" content="https://www.noesya.coop/assets/images/share/share.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="noesya_coop">
