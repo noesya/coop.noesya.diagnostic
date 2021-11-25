@@ -9,11 +9,11 @@
     </p>
   </header>
 
-  <% if @diag.empty_page? %>
-    <%= render "diags/status/abandoned" %>
-  <% else %>
+  <%# if @diag.empty_page? %>
+    <%#= render "diags/status/abandoned" %>
+  <%# else %>
     <%= render "diags/status/#{@diag.status}" %>
-  <% end %>
+  <%# end %>
 
   <section>
     <p>Vous voulez <a href="/">faire ce diagnostic pour une autre page&nbsp;?</a></p>
