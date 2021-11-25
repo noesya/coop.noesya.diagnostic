@@ -1,5 +1,14 @@
 <section class="abandoned">
   <h2>Le diagnostic a échoué, désolé.</h2>
-  <p>Nous avons rencontré un problème technique, nous travaillons dessus. Revenez un peu plus tard, nous aurons peut-être réparé le problème !</p>
-  <p>Si ce n'est pas le cas, vous pouvez toujours nous contacter, ou utiliser directement <a href="https://developers.google.com/web/tools/lighthouse/" target="_blank" rel="noreferrer">Google Lighthouse</a> et <a href="https://www.websitecarbon.com/" target="_blank" rel="noreferrer">Website Carbon Calculator</a>.</p>
+  <p>
+    Nous avons rencontré un problème technique, nous travaillons dessus.
+    Revenez un peu plus tard, nous aurons peut-être réparé le problème !
+  </p>
+  <p>
+    Si ce n'est pas le cas, vous pouvez toujours nous contacter, ou utiliser directement <a href="https://developers.google.com/web/tools/lighthouse/" target="_blank" rel="noreferrer">Google Lighthouse</a> et <a href="https://www.websitecarbon.com/" target="_blank" rel="noreferrer">Website Carbon Calculator</a>.
+  </p>
+  <p>
+    Nous vous conseillons de vérifier l'URL testée (<%= link_to @diag.url, @diag.url, target: :_blank, rel: :noreferrer %>) en cliquant dessus&nbsp;: si la page ne s'affiche pas, le diagnostic ne fonctionnera pas.
+    Dans ce cas, faites un autre diagnostic avec la bonne URL.
+  </p>
 </section>

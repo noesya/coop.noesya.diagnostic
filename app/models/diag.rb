@@ -44,6 +44,10 @@ class Diag < ApplicationRecord
     analyze
   end
 
+  def empty_page?
+    weight == 0
+  end
+
   def mark_as_viewed
     self.update_column :views, (self.views.to_i + 1)
   end

@@ -9,7 +9,11 @@
     </p>
   </header>
 
-  <%= render "diags/status/#{@diag.status}" %>
+  <% if @diag.empty_page? %>
+    <%= render "diags/status/abandoned" %>
+  <% else %>
+    <%= render "diags/status/#{@diag.status}" %>
+  <% end %>
 
   <section>
     <p>Vous voulez <a href="/">faire ce diagnostic pour une autre page&nbsp;?</a></p>
