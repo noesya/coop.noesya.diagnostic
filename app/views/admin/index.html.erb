@@ -1,4 +1,5 @@
 <%= content_for :title, 'Admin' %>
+<%= javascript_include_tag 'application' %>
 <main aria-label="Content" class="index">
   <header>
     <h1>
@@ -7,6 +8,8 @@
     </h1>
   </header>
   <section>
+    <%= area_chart Diag.group_by_day(:created_at, last: 30).count %>
+
     <table class="table">
       <thead>
         <tr>
@@ -33,6 +36,6 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @diags %>
   </section>
 </main>
-<%= paginate @diags, theme: 'bootstrap-5' %>

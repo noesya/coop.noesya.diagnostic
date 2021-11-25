@@ -18,7 +18,9 @@ gem 'sassc-rails'
 gem 'kamifusen'
 gem 'jbuilder'
 gem 'kaminari'
-gem 'bootstrap5-kaminari-views'
+gem 'kaminari-i18n'
+gem 'chartkick'
+gem 'groupdate'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
