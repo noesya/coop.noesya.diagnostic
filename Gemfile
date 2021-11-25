@@ -17,6 +17,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'sassc-rails'
 gem 'kamifusen'
 gem 'jbuilder'
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

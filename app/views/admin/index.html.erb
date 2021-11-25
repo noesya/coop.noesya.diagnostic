@@ -3,7 +3,7 @@
   <header>
     <h1>
       Admin <br>
-      <%= @diags.count %> diags, <%= @diags.sum(:views) %> vues
+      <%= @diags.total_count %> diags
     </h1>
   </header>
   <section>
@@ -11,9 +11,10 @@
       <thead>
         <tr>
           <th scope="col">URL</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date</th>
           <th scope="col">Views</th>
           <th scope="col">Website Carbon</th>
-          <th scope="col">Status</th>
           <th scope="col">Weight</th>
           <th scope="col">CO2</th>
         </tr>
@@ -21,10 +22,11 @@
       <tbody>
         <% @diags.each do |diag| %>
           <tr>
-            <th scope="row"><%= link_to diag.url, diag_path(diag, quiet: true) %></th>
+            <th scope="row"><%= link_to diag.url.truncate(50), diag_path(diag, quiet: true) %></th>
+            <td><%= diag.status %></td>
+            <td><%= l diag.created_at.to_date %></td>
             <td><%= diag.views %></td>
             <td><%= diag.websitecarbon_score %></td>
-            <td><%= diag.status %></td>
             <td><%= number_to_human_size diag.total_byte_weight %></td>
             <td><%= diag.co2.round 2 %> g</td>
           </tr>
@@ -33,3 +35,4 @@
     </table>
   </section>
 </main>
+<%= paginate @diags, theme: 'bootstrap-5' %>
