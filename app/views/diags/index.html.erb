@@ -6,14 +6,14 @@
   </header>
 
   <section>
-    <%= form_tag() do %>
+    <%= form_tag do %>
       <label for="url">URL du site à tester</label>
       <input type="url" id="url" name="diag[url]" placeholder="https://www.monsite.com" required>
       <button type="submit">Tester le site</button>
     <% end %>
     <p>
       Cet outil de diagnostic ne vous demande aucun email ou numéro de téléphone, et tente de vous donner des indications compréhensibles et actionnables. <br>
-      Nous utilisons 2 outils Open Source, <a href="https://developers.google.com/web/tools/lighthouse/" target="_blank" rel="noreferrer">Google Lighthouse</a> et <a href="https://www.websitecarbon.com/" target="_blank" rel="noreferrer">Website Carbon Calculator</a> et vous donnons toutes les sources des informations présentées.
+      Nous utilisons deux outils Open Source, <a href="https://developers.google.com/web/tools/lighthouse/" target="_blank" rel="noreferrer">Google Lighthouse</a> et <a href="https://www.websitecarbon.com/" target="_blank" rel="noreferrer">Website Carbon Calculator</a> et vous donnons toutes les sources des informations présentées.
     </p>
   </section>
 </main>
