@@ -6,7 +6,7 @@
       <%= @diags.total_count %> diags
     </h1>
   </header>
-  <section>
+  <section style="display:block">
     <%= area_chart Diag.group_by_day(:created_at, last: 30).count %>
   </section>
   <section>
