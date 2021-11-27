@@ -199,7 +199,7 @@ class Diag < ApplicationRecord
   def start
     self.status = :pending
     save
-    SlackNotification.push "Démarrage de #{self}"
+    # SlackNotification.push "Démarrage de #{self}"
   end
 
   def succeed
