@@ -1,13 +1,18 @@
 .pagination
+    align-items: center
     display: flex
     grid-column: 1/13
     justify-content: center
     margin-top: $grid-gutter
-    a
-        border: 1px solid white
+    a,
+    .current,
+    .gap
         display: block
         padding: 5px 10px
         text-decoration: none
-    .current
-        a
-            background-color: white
+    .current,
+    a:hover
+        background-color: white
+        color: black
+    .gap
+        border: 0
