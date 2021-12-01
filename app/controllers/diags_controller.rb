@@ -18,6 +18,7 @@ class DiagsController < ApplicationController
 
   def create
     url = Diag.fix params[:diag][:url]
+    url = url[0..-2] if url.ends_with? '/'
     @diag = Diag.where(url: url).first_or_create
     if @diag.save
       redirect_to @diag
