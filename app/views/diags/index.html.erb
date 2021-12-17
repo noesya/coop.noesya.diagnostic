@@ -6,7 +6,7 @@
   </header>
 
   <section>
-    <%= form_tag do %>
+    <%= form_tag nil, novalidate: true do %>
       <label for="url">URL du site à tester</label>
       <input type="url" id="url" name="diag[url]" placeholder="https://www.monsite.com" required>
       <button type="submit">Tester le site</button>
