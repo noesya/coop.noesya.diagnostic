@@ -188,8 +188,8 @@ class Diag < ApplicationRecord
 
   require 'net/http'
   def get_websitecarbon
-    # https://api.websitecarbon.com/data?bytes=4248266
-    api = "https://api.websitecarbon.com/data?bytes=#{total_byte_weight}"
+    # https://api.websitecarbon.com/data?bytes=4248266&green=1
+    api = "https://api.websitecarbon.com/data?bytes=#{total_byte_weight}&green=1"
     uri = URI api
     response = Net::HTTP.get uri
     json = JSON.parse response
