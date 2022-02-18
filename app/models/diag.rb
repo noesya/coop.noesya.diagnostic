@@ -40,6 +40,8 @@ class Diag < ApplicationRecord
 
   def reset!
     self.status = :initialized
+    self.lighthouse = nil
+    self.websitecarbon = nil
     save
     analyze
   end
