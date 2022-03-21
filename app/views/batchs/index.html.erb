@@ -1,15 +1,14 @@
 <% content_for :title, 'Testez plusieurs urls en même temps' %>
 
-<main aria-label="Content" class="index">
+<main aria-label="Contenu" class="index">
   <header>
     <h1>Testez plusieurs urls en même temps</h1>
   </header>
 
   <section>
-    <%= form_tag nil, novalidate: true do %>
-      <p class="small">Entrez une url par ligne</p>
-      <label for="text">URL du site à tester</label>
-      <textarea name="text"required></textarea>
+    <%= form_tag nil, novalidate: true, :class => 'form-multiple' do %>
+      <label for="text">Entrez une url par ligne</label>
+      <textarea name="text" id="text" rows="10" required></textarea>
       <button type="submit">Tester ces urls</button>
     <% end %>
     <p>
