@@ -13,5 +13,6 @@ class BatchsController < ApplicationController
       @diag = Diag.where(url: url).first_or_create
       @diag.analyze
     end
+    redirect_to root_path
   end
 end
