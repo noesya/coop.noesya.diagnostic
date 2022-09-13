@@ -154,6 +154,10 @@ class Diag < ApplicationRecord
 
   protected
 
+  def successful?
+    co2 > 0
+  end
+
   def remove_final_slash
     self.url = url[0..-2] if url.ends_with? '/'
   end
@@ -167,7 +171,8 @@ class Diag < ApplicationRecord
   def analyze_in_background
     get_lighthouse if self.lighthouse.blank?
     get_websitecarbon if self.websitecarbon.blank?
-    succeed
+    successful? ? succeed
+                : fail
   rescue
     fail
   end
