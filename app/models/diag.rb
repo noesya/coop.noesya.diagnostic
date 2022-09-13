@@ -178,6 +178,7 @@ class Diag < ApplicationRecord
     Pathname(local_path).dirname.mkpath
     command = "lighthouse #{self.url}"
     command += " --output json"
+    command += " --enable-error-reporting"
     command += " --output-path #{local_path}"
     # https://github.com/GoogleChrome/lighthouse/issues/6512
     command += " --chrome-flags=\"--headless --ignore-certificate-errors --disable-dev-shm-usage --no-sandbox in-process-gpu\""
