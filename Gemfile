@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.5'
+ruby '3.1.3'
 
 # Back
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
@@ -12,6 +12,7 @@ gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 gem 'slack-incoming-webhooks'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'net-smtp', require: false
 
 # Front
 gem 'sassc-rails'
