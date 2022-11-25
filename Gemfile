@@ -12,7 +12,6 @@ gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 gem 'slack-incoming-webhooks'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'net-smtp', require: false
 
 # Front
 gem 'sassc-rails'
