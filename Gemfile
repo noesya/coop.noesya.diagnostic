@@ -5,7 +5,7 @@ ruby '3.1.2'
 
 # Back
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 6.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'delayed_job_active_record'
