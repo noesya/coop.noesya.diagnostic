@@ -11,6 +11,15 @@
 #  websitecarbon :jsonb
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  page_id       :uuid             not null
+#
+# Indexes
+#
+#  index_diags_on_page_id  (page_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (page_id => pages.id)
 #
 require "test_helper"
 

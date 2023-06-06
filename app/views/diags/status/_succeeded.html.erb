@@ -217,6 +217,34 @@
     </div>
   </div>
 
+  <% if @page.diags.many? %>
+    <div>
+      <div>
+        <h2>Historique</h2>
+      </div>
+      <div class="collapse">
+        <input type="checkbox" id="history">
+        <label role="button" for="history">Évolution de l'impact au cours du temps</label>
+        <div>
+          <table class="table">
+          <% @page.diags.ordered.each do |diag| %>
+            <tr>
+              <td><%= l diag.created_at, format: :long %></td>
+              <td>
+                <% if @diag == diag %>
+                  <%= diag.co2.round(2) %> g eqCO2
+                <% else %>
+                  <%= link_to "#{diag.co2.round(2)} g eqCO2", diag %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <div>
     <div>
       <h2>Je passe à l’action&nbsp;!</h2>

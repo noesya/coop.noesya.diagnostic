@@ -11,9 +11,20 @@
 #  websitecarbon :jsonb
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  page_id       :uuid             not null
+#
+# Indexes
+#
+#  index_diags_on_page_id  (page_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (page_id => pages.id)
 #
 
 class Diag < ApplicationRecord
+  belongs_to :page
+
   THRESHOLD_BAD = 2048000
   THRESHOLD_CORRECT = 1024000
   THRESHOLD_GOOD = 512000
@@ -29,9 +40,9 @@ class Diag < ApplicationRecord
     succeeded: 30
   }
 
-  before_validation :remove_final_slash
+  scope :ordered, -> { order(created_at: :desc) }
 
-  validates_presence_of :url
+  delegate :url, to: :page
 
   def self.fix(url)
     return "https://#{url}" unless url.start_with? 'http'
@@ -149,17 +160,13 @@ class Diag < ApplicationRecord
   end
 
   def to_s
-    "Diagnostic écologique de #{url}"
+    "Diagnostic écologique de #{page.url}"
   end
 
   protected
 
   def successful?
     co2 > 0
-  end
-
-  def remove_final_slash
-    self.url = url[0..-2] if url.ends_with? '/'
   end
 
   def lighthouse_resources_image

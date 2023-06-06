@@ -46,7 +46,7 @@
             margin-bottom: $grid-gutter
         @include media-breakpoint-up(lg)
             font-size: px2rem(45)
-    p, ol li
+    p, ol li, td
         font-size: 1.25rem
         line-height: 2rem
         @include media-breakpoint-up(lg)
@@ -57,3 +57,7 @@
     > section:last-child
         @include media-breakpoint-up(lg)
             margin-left: calc(100% / 12 * 4 + #{$grid-gutter} / 2)
+    .table
+        width: 100%
+        td:last-of-type
+            text-align: right

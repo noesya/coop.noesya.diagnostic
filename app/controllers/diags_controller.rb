@@ -5,6 +5,7 @@ class DiagsController < ApplicationController
 
   def show
     @diag = Diag.find params[:id]
+    @page = @diag.page
     @diag.analyze
     unless params.has_key? :quiet
       @diag.mark_as_viewed
@@ -19,7 +20,8 @@ class DiagsController < ApplicationController
   def create
     url = Diag.fix params[:diag][:url]
     url = url[0..-2] if url.ends_with? '/'
-    @diag = Diag.where(url: url).first_or_create
+    @page = Page.where(url: url).first_or_create
+    @diag = @page.diags.create
     if @diag.save
       redirect_to @diag
     else
