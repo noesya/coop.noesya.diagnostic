@@ -224,18 +224,16 @@
       </div>
       <div class="collapse">
         <input type="checkbox" id="history">
-        <label role="button" for="history">Évolution de l'impact au cours du temps</label>
+        <label role="button" for="history">Évolution du poids au cours du temps</label>
         <div>
           <table class="table">
           <% @page.diags.ordered.each do |diag| %>
             <tr>
               <td><%= l diag.created_at, format: :long %></td>
               <td>
-                <% if @diag == diag %>
-                  <%= diag.co2.round(2) %> g eqCO2
-                <% else %>
-                  <%= link_to "#{diag.co2.round(2)} g eqCO2", diag %>
-                <% end %>
+                <%= link_to_if  (@diag != diag), 
+                                number_to_human_size(diag.weight), 
+                                diag %>
               </td>
             </tr>
           <% end %>
