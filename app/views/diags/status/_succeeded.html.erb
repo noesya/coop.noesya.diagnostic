@@ -6,9 +6,10 @@
       par visite de la page
     </li>
     <li>
-      <strong><%= number_to_percentage @diag.co2_budget, precision: 1 %></strong>
-      du budget carbone <br>
-      d'une personne
+      <% @size = number_to_human_size(@diag.weight) %>
+      <strong><%= @size.to_s.split(' ').first %></strong>
+      <%= @size.to_s.split(' ').last %> téléchargés <br>
+      pour la page mesurée
     </li>
     <li>
       <strong><%= number_to_percentage @diag.overweight, precision: 0 %></strong>
