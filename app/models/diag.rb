@@ -45,7 +45,7 @@ class Diag < ApplicationRecord
   delegate :url, to: :page
 
   def self.fix(url)
-    url = url.lstrip.chop 
+    url = url.strip 
     url = "https://#{url}" unless url.start_with? 'http'
     url
   end
