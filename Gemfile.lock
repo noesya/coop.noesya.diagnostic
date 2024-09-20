@@ -169,7 +169,7 @@ GEM
       racc (~> 1.4)
     pg (1.5.6)
     public_suffix (6.0.1)
-    puma (5.6.8)
+    puma (5.6.9)
       nio4r (~> 2.0)
     racc (1.8.0)
     rack (2.2.9)
@@ -296,7 +296,7 @@ DEPENDENCIES
   kaminari-i18n
   listen (~> 3.3)
   pg (~> 1.1)
-  puma (~> 5.0)
+  puma (~> 5.6)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   rails-i18n (~> 6.0)
