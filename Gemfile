@@ -1,17 +1,18 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.2'
+ruby '3.3.5'
 
 # Back
-gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
-gem 'rails-i18n', '~> 6.0'
+gem 'rails', '~> 7.2.0'
+gem 'rails-i18n', '~> 7.0'
 gem 'pg', '~> 1.1'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 gem 'slack-incoming-webhooks'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'ostruct', '~> 0.6.0'
 
 # Front
 gem 'sassc-rails'
