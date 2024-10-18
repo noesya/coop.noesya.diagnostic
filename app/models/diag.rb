@@ -33,7 +33,7 @@ class Diag < ApplicationRecord
 
   CO2_TARGET = 2000
 
-  enum status: {
+  enum :status, {
     initialized: 0,
     pending: 10,
     abandoned: 20,
@@ -45,7 +45,7 @@ class Diag < ApplicationRecord
   delegate :url, to: :page
 
   def self.fix(url)
-    url = url.strip 
+    url = url.strip
     url = "https://#{url}" unless url.start_with? 'http'
     url
   end
