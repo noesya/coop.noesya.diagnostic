@@ -338,6 +338,7 @@ DEPENDENCIES
   selenium-webdriver
   slack-incoming-webhooks
   spring
+  sprockets-rails (~> 3.5)
   tzinfo-data
   web-console (>= 4.1.0)
   webdrivers

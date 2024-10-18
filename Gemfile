@@ -15,6 +15,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'ostruct', '~> 0.6.0'
 
 # Front
+gem 'sprockets-rails', '~> 3.5'
 gem 'sassc-rails'
 gem 'kamifusen'
 gem 'jbuilder'
