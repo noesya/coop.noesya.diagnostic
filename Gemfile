@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.4.6'
+ruby '3.4.7'
 
 # Back
-gem 'rails', '~> 8.0.0'
+gem 'rails', '~> 8.0'
 gem 'rails-i18n'
 gem 'pg', '~> 1.1'
-gem 'puma', '~> 6.0'
+gem 'puma', '~> 7.0'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 gem 'slack-incoming-webhooks'
@@ -25,7 +25,7 @@ gem 'chartkick'
 gem 'groupdate'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: [:mri, :windows]
 end
 
 group :development do
@@ -43,4 +43,4 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: [:windows, :jruby]
