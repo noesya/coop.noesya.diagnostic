@@ -4,7 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.4.7'
 
 # Back
-gem 'benchmark', '~> 0.5.0' # Removed from bundled gems in Ruby 4.0, needed for delayed_job
 gem 'bootsnap', require: false
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
