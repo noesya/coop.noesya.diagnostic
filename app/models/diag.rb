@@ -184,7 +184,7 @@ class Diag < ApplicationRecord
   rescue
     fail
   end
-  handle_asynchronously :analyze_in_background
+  handle_asynchronously :analyze_in_background, queue: 'default'
 
   def get_lighthouse
     local_path = "./tmp/#{self.id}/report.json"
