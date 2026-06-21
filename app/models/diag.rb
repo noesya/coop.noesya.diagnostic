@@ -165,7 +165,10 @@ class Diag < ApplicationRecord
   end
 
   def lighthouse_full_page_screenshot
-    lighthouse['audits']['full-page-screenshot']['details']['screenshot']['data']
+    @lighthouse_full_page_screenshot ||= begin
+      full_page_screenshot_data = lighthouse['fullPageScreenshot'] || lighthouse['audits']['full-page-screenshot']['details']
+      full_page_screenshot_data['screenshot']['data']
+    end
   rescue
     ''
   end
