@@ -7,8 +7,14 @@ https://diagnostic.noesya.coop
 ```
 bundle
 yarn
-npm install lighthouse -g
 rails db:create db:migrate
+```
+
+Vérifier que les binaires venant des `node_modules` sont utilisés par votre PATH avec les commandes `lighthouse --version` et/ou `which lighthouse`.
+
+Si ce n'est pas le cas, ajoutez ceci dans votre fichier de configuration shell (ex: `~/.zshrc`) :
+```
+export PATH=./node_modules/.bin:$PATH
 ```
 
 ## Run
@@ -20,14 +26,4 @@ rails jobs:work
 
 ## Deploy
 
-### Setup
-
-```
-git remote add scalingo git@ssh.osc-fr1.scalingo.com:coop-noesya-diagnostic.git
-```
-
-### Run
-
-```
-git push scalingo master
-```
+Déploiement automatique quand on push sur GitHub.
