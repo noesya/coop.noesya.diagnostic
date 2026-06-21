@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_10_18_172052) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_21_143129) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -35,6 +35,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_18_172052) do
     t.datetime "created_at", null: false
     t.jsonb "lighthouse"
     t.uuid "page_id", null: false
+    t.text "screenshot"
     t.integer "status", default: 0
     t.datetime "updated_at", null: false
     t.string "url"

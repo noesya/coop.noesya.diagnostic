@@ -33,6 +33,9 @@ class Diag < ApplicationRecord
 
   CO2_TARGET = 2000
 
+  DEVICE_WIDTH = 280
+  DEVICE_HEIGHT = 498
+
   enum :status, {
     initialized: 0,
     pending: 10,
@@ -53,6 +56,7 @@ class Diag < ApplicationRecord
   def reset!
     self.status = :initialized
     self.lighthouse = nil
+    self.screenshot = nil
     self.websitecarbon = nil
     save
     analyze
@@ -154,8 +158,14 @@ class Diag < ApplicationRecord
     0
   end
 
-  def screenshot
+  def lighthouse_final_screenshot
     lighthouse['audits']['final-screenshot']['details']['data']
+  rescue
+    ''
+  end
+
+  def lighthouse_full_page_screenshot
+    lighthouse['audits']['full-page-screenshot']['details']['screenshot']['data']
   rescue
     ''
   end
@@ -178,6 +188,7 @@ class Diag < ApplicationRecord
 
   def analyze_in_background
     get_lighthouse if self.lighthouse.blank?
+    get_screenshot
     get_websitecarbon if self.websitecarbon.blank?
     successful? ? succeed
                 : fail
@@ -194,15 +205,38 @@ class Diag < ApplicationRecord
     command += " --enable-error-reporting"
     command += " --output-path #{local_path}"
     # https://github.com/GoogleChrome/lighthouse/issues/6512
-    command += " --chrome-flags=\"--headless --ignore-certificate-errors --disable-dev-shm-usage --no-sandbox --in-process-gpu\""
+    command += " --chrome-flags=\"--headless --window-size=#{DEVICE_WIDTH},#{DEVICE_HEIGHT} --ignore-certificate-errors --disable-dev-shm-usage --no-sandbox --in-process-gpu\""
     puts command
     system command
     data = File.read local_path
     json = JSON.parse data
     self.update_column :lighthouse, json
+    get_screenshot
   end
 
-  require 'net/http'
+  def get_screenshot
+    if lighthouse_full_page_screenshot.blank?
+      # No full page screenshot, we fall back to the final screenshot
+      update_column :screenshot, lighthouse_final_screenshot
+      return
+    end
+
+    raw_image_data = Base64.decode64(lighthouse_full_page_screenshot.split(',').last)
+    full_page_screenshot = Vips::Image.new_from_buffer(raw_image_data, "")
+
+    scale_factor = DEVICE_WIDTH.to_f / full_page_screenshot.width
+    resized_image = full_page_screenshot.resize(scale_factor)
+
+    final_height = [DEVICE_HEIGHT, resized_image.height].min
+    cropped_image = resized_image.crop(0, 0, DEVICE_WIDTH, final_height)
+
+    jpeg_buffer = cropped_image.write_to_buffer(".jpg", Q: 80)
+
+    data_uri = "data:image/jpeg;base64,#{Base64.strict_encode64(jpeg_buffer)}"
+    update_column(:screenshot, data_uri)
+  rescue
+  end
+
   def get_websitecarbon
     # https://api.websitecarbon.com/data?bytes=4248266&green=1
     api = "https://api.websitecarbon.com/data?bytes=#{total_byte_weight}&green=1"

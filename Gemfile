@@ -7,10 +7,12 @@ ruby '4.0.5'
 gem 'bootsnap', require: false
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
+gem "net-http", "~> 0.9.1"
 gem 'rails', '~> 8.1.0'
 gem 'rails-i18n'
 gem 'pg', '~> 1.6'
 gem 'puma', '~> 8.0'
+gem "ruby-vips", "~> 2.3"
 gem 'slack-incoming-webhooks'
 
 # Front

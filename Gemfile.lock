@@ -176,6 +176,8 @@ GEM
       prism (~> 1.5)
     msgpack (1.8.3)
     mustermann (3.1.1)
+    net-http (0.9.1)
+      uri (>= 0.11.1)
     net-imap (0.6.4.1)
       date
       net-protocol
@@ -265,6 +267,9 @@ GEM
     reline (0.6.3)
       io-console (~> 0.5)
     rexml (3.4.4)
+    ruby-vips (2.3.0)
+      ffi (~> 1.12)
+      logger
     rubyzip (2.4.1)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -349,11 +354,13 @@ DEPENDENCIES
   kaminari
   kaminari-i18n
   listen (~> 3.10)
+  net-http (~> 0.9.1)
   pg (~> 1.6)
   puma (~> 8.0)
   rack-mini-profiler (~> 4.0)
   rails (~> 8.1.0)
   rails-i18n
+  ruby-vips (~> 2.3)
   sassc-rails
   slack-incoming-webhooks
   spring
