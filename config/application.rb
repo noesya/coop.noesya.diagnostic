@@ -25,6 +25,7 @@ module Diagnostic
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.default_locale = :fr
     config.active_job.queue_adapter = :delayed_job
+    config.active_storage.variant_processor = :disabled
 
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
