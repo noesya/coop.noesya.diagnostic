@@ -11,7 +11,7 @@
 #  websitecarbon :jsonb
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  page_id       :uuid             not null
+#  page_id       :uuid             not null, indexed
 #
 # Indexes
 #
@@ -19,7 +19,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (page_id => pages.id)
+#  fk_rails_7e3753d06a  (page_id => pages.id)
 #
 
 class Diag < ApplicationRecord
@@ -194,7 +194,7 @@ class Diag < ApplicationRecord
     command += " --enable-error-reporting"
     command += " --output-path #{local_path}"
     # https://github.com/GoogleChrome/lighthouse/issues/6512
-    command += " --chrome-flags=\"--headless --ignore-certificate-errors --disable-dev-shm-usage --no-sandbox in-process-gpu\""
+    command += " --chrome-flags=\"--headless --ignore-certificate-errors --disable-dev-shm-usage --no-sandbox --in-process-gpu\""
     puts command
     system command
     data = File.read local_path

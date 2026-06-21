@@ -10,44 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_06_090358) do
-
+ActiveRecord::Schema[8.1].define(version: 2024_10_18_172052) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
-  enable_extension "plpgsql"
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "failed_at", precision: nil
     t.text "handler", null: false
     t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
+    t.datetime "locked_at", precision: nil
     t.string "locked_by"
+    t.integer "priority", default: 0, null: false
     t.string "queue"
-    t.datetime "created_at", precision: 6
-    t.datetime "updated_at", precision: 6
+    t.datetime "run_at", precision: nil
+    t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "diags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "url"
-    t.jsonb "websitecarbon"
-    t.jsonb "lighthouse"
-    t.integer "views"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "status", default: 0
     t.integer "attempts", default: 0
+    t.datetime "created_at", null: false
+    t.jsonb "lighthouse"
     t.uuid "page_id", null: false
+    t.integer "status", default: 0
+    t.datetime "updated_at", null: false
+    t.string "url"
+    t.integer "views"
+    t.jsonb "websitecarbon"
     t.index ["page_id"], name: "index_diags_on_page_id"
   end
 
   create_table "pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "diags", "pages"
