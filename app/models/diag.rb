@@ -192,6 +192,10 @@ class Diag < ApplicationRecord
     command = "lighthouse #{self.url}"
     command += " --output json"
     command += " --enable-error-reporting"
+    command += " --screenEmulation.mobile"
+    command += " --screenEmulation.width=280"
+    command += " --screenEmulation.height=496"
+    command += " --screenEmulation.deviceScaleFactor=2"
     command += " --output-path #{local_path}"
     # https://github.com/GoogleChrome/lighthouse/issues/6512
     command += " --chrome-flags=\"--headless --ignore-certificate-errors --disable-dev-shm-usage --no-sandbox in-process-gpu\""
